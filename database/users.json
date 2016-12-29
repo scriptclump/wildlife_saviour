@@ -1,0 +1,16 @@
+{ 
+    "_id" : ObjectId("57e4d5448548c519bc0324ab"), 
+    "email" : "basant@scriptclump.com", 
+    "password" : "$2a$10$/aLJ98T9QMa.g1E8AHXAgOKKNeHnoQTm5lcTdiw9RrsHTMo.wNxmi", 
+    "created" : ISODate("2016-09-23T07:09:56.553+0000"), 
+    "__v" : 0.0, 
+    "profileRef" : ObjectId("57e4d5448548c519bc0324ac")
+}
+{ 
+    "_id" : ObjectId("57e53473e4da70181cf869c1"), 
+    "email" : "superuser@scriptclump.com", 
+    "password" : "$2a$10$/aLJ98T9QMa.g1E8AHXAgOKKNeHnoQTm5lcTdiw9RrsHTMo.wNxmi", 
+    "created" : ISODate("2016-09-23T13:56:03.979+0000"), 
+    "__v" : 0.0, 
+    "profileRef" : ObjectId("57e53474e4da70181cf869c2")
+}

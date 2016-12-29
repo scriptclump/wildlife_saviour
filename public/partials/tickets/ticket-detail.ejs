@@ -1,0 +1,336 @@
+<div ng-controller="ticketCtrl" ng-init="getTicketDetail()" >
+    <div class="container-fluid" ng-show="isVisible">
+        <div class="side-body">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title ticketDetail_header">
+                        <div class="title">
+                            <span class="title">#{{data.ticketID}} - {{data.title}}</span>
+                           
+                            <span class="pull-right btn-group">
+                                    <button type="button" class="btn" ng-class="(data.track_button==false) ? 'btn-info' : 'btn-default'">OFF</button>
+                                    <button type="button" class="btn" ng-class="(data.track_button==true) ? 'btn-info' : 'btn-default'">ON</button>
+                            </span> 
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="alert alert-comment col-md-12" id="comment-alert" style="display: none">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <center>
+                                <strong> </strong>Comment has been added successfully.  </center>
+                        </div>
+                        <div class="alert alert-success col-md-12" id="success-alert" style="display: none">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <center> Ticket -<strong>
+                                    <u>
+                                        <a href="/dashboard/tickets/ticket-detail/{{data.ticketID}}">{{data.ticketID}}</a>
+                                    </u>
+                                </strong> has been updated successfully.  </center>
+                        </div>
+                        <div class="alert alert-danger col-md-12" id="danger-alert" style="display: none">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <center>
+                                <strong> Oops! </strong> Something went wrong. <br> Reason: {{errorMsg}} </center>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <form id="ticket_prop_sec" class="form-horizontal" ng-submit="updateTicket(data);">
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">Reported On:</label>
+                                    <div class="col-sm-8">
+                                        <label class="control-label">{{data.reportedDate| date:'medium'}}</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">Reported By:</label>
+                                    <div class="col-sm-8">
+                                        <label class="control-label">{{data.empName}}</label> </div>
+                                </div>                                                
+                                <div class="form-group">
+                                    <label for="type" class="col-sm-4 control-label">Type:</label>
+                                    <div class="col-sm-8">
+                                        <select ng-model="data.issue_type_cat_1" class="ticket_det_type form-control margin-bottom-10" ng-focus="focusCallback($event)"  ng-change="updateActivityAndTicket('issue_type_cat_1', oldValue, data.issue_type_cat_1)" ng-click="oldValue = data.issue_type_cat_1">
+                                            <option ng-repeat="(key, value) in issueTypeCat2" ng-selected="{{key == data.issue_type_cat_1}}" value="{{key}}">
+                                                {{key}}
+                                            </option>
+                                        </select>
+                                        <select ng-if="data.issue_type_cat_1" ng-disabled="!can('14764455')" ng-model="data.issue_type_cat_2" class="ticket_det_type form-control margin-bottom-10" ng-focus="focusCallback($event)"  ng-change="updateActivityAndTicket('issue_type_cat_2', oldValue, data.issue_type_cat_2)" ng-click="oldValue = data.issue_type_cat_2">
+                                            <option ng-repeat="(key, value) in issueTypeCat2[data.issue_type_cat_1] track by $index" ng-selected="{{key == data.issue_type_cat_2}}" value="{{key}}">
+                                                {{key}}
+                                            </option>
+                                        </select>
+                                        <!--                                        {{data.issue_type_cat_3}}-->
+                                        <select ng-if="data.issue_type_cat_2" ng-disabled="!can('14764455')" ng-model="data.issue_type_cat_3" class="ticket_det_type form-control margin-bottom-10" ng-focus="focusCallback($event)"  ng-change="updateActivityAndTicket('issue_type_cat_3', oldValue, data.issue_type_cat_3)" ng-click="oldValue = data.issue_type_cat_3">
+                                            <option ng-repeat="(key, value) in issueTypeCat2[data.issue_type_cat_1][data.issue_type_cat_2] track by $index" ng-selected="{{key == data.issue_type_cat_3}}" value="{{key}}">
+                                                {{key}}
+                                            </option>
+                                        </select>
+                                        <!--                                        {{data.issue_type_cat_4}}-->
+                                        <select ng-model="data.issue_type_cat_4" ng-if="data.issue_type_cat_3 && (typeof (issueTypeCat2[data.issue_type_cat_1][data.issue_type_cat_2][data.issue_type_cat_3] === Object))" class="form-control margin-bottom-10" ng-focus="focusCallback($event)"  ng-change="updateActivityAndTicket('issue_type_cat_4', oldValue, data.issue_type_cat_4)" ng-click="oldValue = data.issue_type_cat_4">
+                                            <option ng-repeat="(key, value) in issueTypeCat2[data.issue_type_cat_1][data.issue_type_cat_2][data.issue_type_cat_3] track by $index" ng-selected="{{value == data.issue_type_cat_4}}"value="{{value}}">
+                                                {{value}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <!--                                <div class="form-group" ng-if="data.issue_type_cat_others || (data.issue_type_cat_3 === 'Others')">
+                                                                    <label class="col-sm-4 control-label" >Others</label>
+                                                                    <div class="col-sm-8">
+                                                                        <input type="text" name="" ng-model="issue_type_cat_others" class="form-control margin-bottom-10"/>
+                                                                    </div>
+                                                                </div> -->
+                                <div class="form-group">
+                                    <label for="priority" class="col-sm-4 control-label">Priority:</label>
+                                    <div class="col-sm-8">
+                                        <select ng-disabled="isClosed" ng-model="data.priority"  class="form-control" id="priority" ng-focus="focusCallback($event)" ng-change="updateActivityAndTicket('priority', oldValue, data.priority)" ng-click="oldValue = data.priority">
+                                            <option ng-value="Low">Low</option>
+                                            <option ng-value="Medium">Medium</option>
+                                            <option ng-value="High">High</option>
+                                            <option ng-value="Critical">Critical</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="status" class="col-sm-4 control-label">Status:</label>
+                                    <div class="col-sm-8">
+                                        <select ng-disabled="isClosed"  ng-model="data.status" class="status_ddown form-control" id="status" ng-focus="focusCallback($event)" ng-change="updateActivityAndTicket('status', oldValue, data.status)" ng-click="oldValue = data.status">
+                                            <option value="New">New</option>
+                                            <option value="Open">Open</option>
+                                            <option value="Pending for Approval">Pending for Approval</option>
+                                            <option value="Working with Vendor">Working with Vendor</option>
+                                            <option value="Work in Progress">Work in progress</option>
+                                            <option value="Close">Close</option>
+                                            <option value="Re-Open">Re-Open</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="assignment" class="col-sm-4 control-label">Assign To:  </label>
+                                    <div class="col-sm-8"> 
+                                        <select ng-disabled="isClosed" ng-model="data.assign_to" class="form-control" id="assign_to" ng-focus="focusCallback($event)"  ng-change="updateActivityAndTicket('assign_to', oldValue, data.assign_to)" ng-click="oldValue = data.assign_to">
+                                            <option ng-repeat="option in membersList"  ng-selected="{{option._id == data.assign_to}}" value="{{option._id}}" >{{option.fName}} {{option.lName}}</option>
+                                        </select>
+                                    </div> 
+                                </div> 
+                                <div class="form-group" ng-hide="data.approved_list.length">
+                                    <label for="assignment" class="col-sm-4 control-label">  </label>
+                                    <div class="col-sm-8"> 
+                                        <input type="button" value="Need Approval" ng-click="ShowHide()" class="btn btn-info form-control">
+                                    </div> 
+                                </div>
+                                <div class="form-group" ng-hide="IsHidden" ng-show="data.approved_list.length">
+                                    <label for="assignment" class="col-sm-4 control-label">ApproverList:  </label>
+                                    <div class="col-sm-8"> 
+                                        <select ng-disabled="isClosed" class="form-control" ng-model="data.approver" id="approvetList" ng-change="sendEmailToApprover(data)">
+                                            <option ng-repeat="approver in approverList"  ng-selected="{{approver._id == data.approver}}" value="{{approver._id}}">{{approver.fName}} {{approver.lName}}</option>
+                                        </select>
+                                        <div class="" ng-show="data.approved_list.length">
+                                            <div style="font-weight:600;">Approvers Tagged:</div>
+                                            <div ng-repeat="item in ticketApproverList">{{item.fName}}&nbsp;{{item.lName}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="status" class="col-sm-4 control-label">TAT:</label>
+                                    <div class="col-sm-8">
+                                        <select ng-disabled="isClosed" ng-model="data.tat_time" class="form-control" id="status" ng-focus="focusCallback($event)" ng-change="updateActivityAndTicket('tat_time', oldValue, data.tat_time)" ng-click="oldValue = data.tat_time" >
+                                            <option value=1>1hr</option>
+                                            <option value=2>2hr</option>
+                                            <option value=4>4hr</option>
+                                            <option value=6>6hr</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">Owner:</label>
+                                    <div class="col-sm-8" ng-focus="focusCallback($event)">
+                                        <label class="control-label">{{data.ownerid.fName}} &nbsp;{{data.ownerid.lName}}</label>
+                                    </div>
+                                </div>                              
+
+
+                                <div class="form-group">
+                                    <span class="col-sm-4"/></span>
+                                    <div class="col-sm-8" style="display:none">
+                                        <button type="submit" ng-disabled="isClosed" class="btn btn-md btn-block btn-success">Update</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <script type="text/javascript" ng-if="can('37810236') || can('78894315')">
+                            $(document).ready(function(){
+                                    $("#ticket_prop_sec :input").prop("disabled", true);
+                            });
+                        </script>
+                        <script type="text/javascript" ng-if="can('14764455')">
+                            $(document).ready(function(){
+                                    $("#ticket_prop_sec :input").prop("disabled", false);
+                            });
+                        </script>
+                        <script type="text/javascript">
+                            $(document).ready(function(){
+                                    /*$("#tablist li:nth-child(1)").addClass('active');
+                                    $("#tabcomments li:nth-child(1)").addClass('active');*/
+                                                            //$(".nav-tabs li:first").addClass("active");
+                                                            //$(".tab-content .tab-pane:first").addClass("active");
+                            });
+                        </script>
+                        <div class="col-md-8">
+                            <h4>Description: </h4>
+                            <div  ng-bind-html="formatedHTML(data.description)" class=""></div>
+                            <!--                            <div  ng-bind-html="data.description" class=""></div>-->
+
+                            <!--                            <div >
+                                                            {{data.description}}
+                                                        </div>-->
+                            <div class="" ng-if="data.img_Path">
+                                <hr/>
+                                <h4 class="title" >Attachments</h4>
+                                <div class="attachments">
+                                    <a href="{{file.path}}" target="_blank" ng-repeat="file in attachments track by $index">
+                                        <img ng-src="{{file.path}}" style="width:80px;height: 40px;" class="img-responsive" ng-if="file.type == 'Image'">
+                                        <i class="fa fa-file-word-o" aria-hidden="true" ng-if="file.type == 'Docs'"></i>
+                                        <i class="fa fa-file-excel-o" aria-hidden="true" ng-if="file.type == 'Excel'"></i>
+                                        <i class="fa fa-file-pdf-o" aria-hidden="true" ng-if="file.type == 'Pdf'"></i>
+                                        <i class="fa fa-file-text-o" aria-hidden="true" ng-if="file.type == 'Txt'"></i>
+                                        <i class="fa fa-file" aria-hidden="true" ng-if="file.type == 'Other'"></i>
+                                    </a>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+
+                            <hr/>
+                            <div class="">
+
+                                <div role="tabpanel">
+                                    <!-- Nav tabs -->
+                                    <ul id="tablist" class="nav nav-tabs" role="tablist">
+                                        <li role="presentation" class="active" ng-if="can('14764455') || data.approved_list.indexOf(loggedInUserObj._id) != -1">
+                                            <a href="#activity-tab" aria-controls="home" role="tab" data-toggle="tab" aria-expanded="true">Activity</a>
+                                        </li>
+                                        <li role="presentation" class="" ng-if="can('14764455')">
+                                            <a href="#team-comment" aria-controls="profile" role="tab" data-toggle="tab" aria-expanded="false">Team Comments</a>
+                                        </li>
+                                        <li role="presentation" id="employee-tab" class="" ng-if="can('14764455') || can('37810236') || can('78894315')">
+                                            <a href="#employee-comment" aria-controls="profile" role="tab" data-toggle="tab" aria-expanded="false">Employee Comments</a>
+                                        </li>
+                                        <li role="presentation" class="" ng-if="can('14764455') || data.approved_list.indexOf(loggedInUserObj._id) != -1">
+                                            <a href="#approver-comment" aria-controls="profile" role="tab" data-toggle="tab" aria-expanded="false">Approver Comments</a>
+                                        </li>
+                                    </ul>
+                                    <!-- Tab panes -->
+                                    <div id="tabcomments" class="tab-content">
+                                        <div role="tabpanel" class="tab-pane active" id="activity-tab" ng-if="can('14764455') || data.approved_list.indexOf(loggedInUserObj._id) != -1">
+                                            <ul class="list-group" ng-repeat="activity in data.activityLogs track by $index">
+                                                <li class="list-group-item fa fa-user" aria-hidden="false" id="activity_list">{{activity}}</li>
+                                            </ul> 
+                                        </div>
+                                        <div role="tabpanel" class="tab-pane" id="team-comment" ng-if="can('14764455')">
+                                            <form class="form-horizontal" ng-submit="addComment(commentData);"> 
+                                                <div class="form-group">
+                                                    <div class="col-sm-12"> 
+                                                        <textarea id="comment" class="form-control" ng-model="commentData.comment" required></textarea>
+                                                    </div>
+                                                </div>
+                                                <button type="submit"  class="btn btn-info pull-right">Add Comment</button>
+                                            </form>
+                                            <div class="clearfix"></div>
+                                            <div class="form-group" id="comments-div"> 
+                                                <div class="card card-success">
+                                                    <div class="card-body no-padding">
+                                                        <ul class="message-list">
+                                                            <li ng-repeat="comment in commentsList|filter:{comment_type:'team_team'}|orderBy: '-created' track by $index">
+                                                                <div class="message-block-comment">
+                                                                    <div>                                                                                    
+                                                                        <span class="usernameby">by</span><span class="username">{{comment.commentedByName}}</span> 
+                                                                        <span class="message-datetime">{{comment.created|timeAgo}}</span>
+                                                                    </div>
+                                                                    <div class="message">{{comment.comment}}</div>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div> 
+                                        </div>
+                                        <div role="tabpanel" class="tab-pane" id="employee-comment" ng-if="can('14764455') || can('37810236') || can('78894315')">
+                                            <form class="form-horizontal" ng-submit="sendCommentToEmp(empComment);"> 
+                                                <div class="form-group">
+                                                    <div class="col-sm-12">
+                                                        <textarea id="comment" class="form-control" ng-model="empComment.comment" required></textarea>
+                                                    </div>
+                                                </div>
+                                                <button type="submit"  class="btn btn-info pull-right">Add Comment</button>
+                                            </form>
+                                            <div class="clearfix"></div>
+                                            <div class="form-group" id="comments-div"> 
+                                                <div class="card card-success">
+                                                    <div class="card-body no-padding">
+                                                        <ul class="message-list">
+                                                            <li ng-repeat="comment in commentsList|filter:{comment_type:'team_emp'}|orderBy: '-created' track by $index">
+                                                                <div class="message-block-comment">
+                                                                    <div>                                                                                    
+                                                                        <span class="usernameby">by</span><span class="username">{{comment.commentedByName}}</span> 
+                                                                        <span class="message-datetime">{{comment.created|timeAgo}}</span>
+                                                                    </div>
+                                                                    <div class="message" ng-bind-html="comment.comment | renderHtml"></div>
+                                                                    <!--                                                                    <div class="message" ng-bind-html="comment.comment"></div>-->
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div> 
+                                        </div> 
+                                        <div role="tabpanel" class="tab-pane" id="approver-comment" ng-if="can('14764455') || data.approved_list.indexOf(loggedInUserObj._id) != -1">
+                                            <form class="form-horizontal" ng-submit="addApproverComment(approverCommentData);"> 
+                                                <div class="form-group">
+                                                    <div class="col-sm-12">
+                                                        <textarea id="comment" class="form-control" ng-model="approverCommentData.comment" required></textarea>
+                                                    </div>
+                                                </div>
+                                                <button type="submit"  class="btn btn-info pull-right">Add Comment</button>
+                                            </form>
+                                            <!-- Commented status slect box  -->
+                                            <!--  <label for="priority" class="col-sm-4 control-label">Status :</label>                                    
+                                                     <div class="col-sm-8">
+                                                         <select ng-disabled="isClosed" ng-model="data.approvalStatus" class="form-control" id="status" ng-change="updateApprovalStatus(data.approvalStatus,data)" style="width:100px;">
+                                                             <option ng-value="Low">Accept</option>
+                                                             <option ng-value="Medium">Reject</option>
+                                                             <option ng-value="High">Hold</option>
+                                                         </select>
+                                                     </div> -->
+                                            <div class="clearfix"></div>
+                                            <div class="form-group" id="comments-div"> 
+                                                <div class="card card-success">
+                                                    <div class="card-body no-padding">
+                                                        <ul class="message-list">
+                                                            <li ng-repeat="comment in commentsList|filter:{comment_type:'team_approver'}|orderBy: '-created' track by $index">
+                                                                <div class="message-block-comment">
+                                                                    <div>                                                                                    
+                                                                        <span class="usernameby">by</span><span class="username">{{comment.commentedByName}}</span> 
+                                                                        <span class="message-datetime">{{comment.created|timeAgo}}</span>
+                                                                    </div>
+                                                                    <div class="message" ng-bind-html="comment.comment | renderHtml"></div>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div> 
+                                        </div>
+                                    </div>
+                                </div> 
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+    </div>
+</div>

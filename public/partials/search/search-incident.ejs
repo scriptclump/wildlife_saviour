@@ -1,0 +1,77 @@
+
+<div class="container-fluid" ng-controller="searchIncident">
+    <div class="side-body">
+
+        <div class = "row">
+
+            <div class="col-xs-12">
+                <div class="alert alert-danger col-md-12" id="danger-alert" style="display: none">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <center> <strong> Oops! </strong> No Incident found. Please try again! </center>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <div class="title">Search by Incident ID</div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <form class="form-horizontal" ng-submit="searchbyId(id);">
+                            <div class="form-group">
+                                <label for="incidentID" class="col-sm-4 control-label">Incident ID</label>
+                                <div class="col-sm-4">
+                                    <input type="text" required ng-model="id"  class="form-control" id="incidentID" placeholder="IM005000000" />
+                                    <button type="submit" class="btn btn-md btn-block btn-info">Search by Incident ID</button>
+
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div ng-show="incidentResult">
+                    <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <div class="title">Results</div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+
+                        <table datatable="" class="row-border hover">
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Title</th>
+                                <th>Application</th>
+                                <th>Type</th>
+                                <th>Status</th>
+                                <th>Priority</th>
+                                <th>Reported Date</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td><b><u><a href="/incident-detail/{{incidentData.incidentID}}/">{{incidentData.incidentID}}</a></u></b></td>
+                                <td>{{incidentData.title}}</td>
+                                <td>{{incidentData.application}}</td>
+                                <td>{{incidentData.incidentType}}</td>
+                                <td>{{incidentData.status}}</td>
+                                <td>{{incidentData.priority}}</td>
+                                <td>{{incidentData.reportedDate}}</td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

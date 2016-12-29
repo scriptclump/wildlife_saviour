@@ -1,0 +1,26 @@
+{ 
+    "_id" : ObjectId("57e4d5448548c519bc0324ac"), 
+    "accessRole" : "admin", 
+    "designation" : "Administrator", 
+    "email" : "basant@scriptclump.com", 
+    "empID" : "EMP_0000", 
+    "fName" : "IT", 
+    "lName" : "Admin", 
+    "location" : "HYDERABAD", 
+    "mNum" : "9030207601", 
+    "created" : ISODate("2016-09-23T07:09:56.807+0000"), 
+    "__v" : 0.0, 
+    "aNum" : "78565462426"
+}
+{ 
+    "_id" : ObjectId("57e53474e4da70181cf869c2"), 
+    "designation" : "Super User", 
+    "email" : "superuser@scriptclump.com", 
+    "empID" : "EMP_0000", 
+    "fName" : "Super", 
+    "lName" : "User", 
+    "location" : "Hyderabad", 
+    "mNum" : "9876543210", 
+    "created" : ISODate("2016-09-23T13:56:04.355+0000"), 
+    "__v" : 0.0
+}

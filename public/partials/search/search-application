@@ -1,0 +1,80 @@
+
+<div class="container-fluid" ng-controller="searchAppCtrl">
+    <div class="side-body">
+
+        <div class = "row">
+
+            <div class="col-xs-12">
+                <div class="alert alert-danger col-md-12" id="danger-alert" style="display: none">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <center> <strong> Oops! </strong> No Incidents found. Please try again! </center>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <div class="title">Search by Incident ID</div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <form class="form-horizontal" ng-submit="searchByAppln(application);">
+                            <div class="form-group">
+                                <label for="applicationSelect" class="col-sm-4 control-label">Application</label>
+                                <div class="col-sm-4">
+                                    <select ng-model="application" required class="form-control" id="applicationSelect">
+
+                                        <option value="Instore Server">Server</option>
+                                        <option value="Instore PDA">PDA</option>
+                                        <option value="Server and PDA">Server and PDA </option>
+                                    </select>
+                                    <button type="submit" class="btn btn-md btn-block btn-warning">Search by Application</button>
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div ng-show="searchApplnResult">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">
+                                <div class="title">Results</div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+
+                            <table datatable="ng"  class="row-border hover">
+                                <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Title</th>
+                                    <th>Application</th>
+                                    <th>Type</th>
+                                    <th>Status</th>
+                                    <th>Priority</th>
+                                    <th>Reported Date</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="x in data">
+                                    <td><b><u><a href="/incident-detail/{{x.incidentID}}/">{{x.incidentID}}</a></u></b></td>
+                                    <td>{{x.title}}</td>
+                                    <td>{{x.application}}</td>
+                                    <td>{{x.incidentType}}</td>
+                                    <td>{{x.status}}</td>
+                                    <td>{{x.priority}}</td>
+                                    <td>{{x.reportedDate}}</td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

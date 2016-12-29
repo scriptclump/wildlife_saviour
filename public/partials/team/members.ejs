@@ -1,0 +1,62 @@
+<div class="container-fluid" ng-controller="teamCtrl" ng-init="loadMembersTable();">
+    <div class="side-body padding-top">
+        <div class="row">
+            <div class="card animated slideInDown">
+                <div class="card-header">
+                    <div class="card-title">
+                        <div class="title"><i class="fa fa-user"></i>&nbsp;&nbsp;Members</div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <table datatable="ng"  class="table table-responsive">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email ID</th>
+                                <th>Employee ID</th>
+                                <th>Designation</th>
+                                <th>Mobile No.</th>
+                                <th>Alternative Mobile No.</th>
+                                <th>Location</th>
+                                <th>Activated</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="x in data">
+                                <td ng-if="can('80028564')">
+                                    <a style="font-weight: 600;text-decoration: underline;" href="/dashboard/team/member-profile/{{x._id}}">
+                                        {{x.fName}}&nbsp;{{x.lName}}
+                                    </a>
+                                </td>
+                                <td ng-if="!can('80028564')">{{x.fName}}&nbsp;{{x.lName}}</td>
+                                <td>{{x.email}}</td>
+                                <td>
+                                    {{x.empID}}
+                                    <!-- <b ng-if="userObj.accessRole == 'admin'">
+                                        <u>
+                                            <a  href="/dashboard/team/member-profile/{{x._id}}">{{x.empID}}</a>
+                                        </u>
+                                    </b>
+                                    <b ng-if="userObj.accessRole == 'member'">{{x.empID}}</b> -->
+                                </td>
+                                <td>{{x.designation}}</td>
+                               <!--  <td>{{x.mNum}}</td> -->
+                               <td align="center">
+                                  <span ng-if=" x.mNum !=''">{{x.mNum}}<br></span>
+                                  <span ng-if=" x.mNum === ''" >-<br></span>
+                               </td>
+                               <!--  <td>{{x.aNum}}</td> -->
+                               <td align="center">
+                                   <span ng-if="x.aNum !=''">{{x.aNum}}<br></span>
+                                   <span ng-if="x.aNum ===''">-<br></span>
+                               </td>
+                                <td>{{x.location}}</td>
+                                <td>{{x.created | date:'yyyy-MM-dd'}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

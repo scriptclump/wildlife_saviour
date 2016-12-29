@@ -1,0 +1,165 @@
+            <div ng-controller="incidentCtrl" ng-init="getIncidentDetail();" >
+            <div class="container-fluid" ng-show="isVisible">
+                <div class="side-body" >
+                    <div class="row">
+                        <div class="alert alert-success col-md-12" id="success-alert" style="display: none">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <center> Incident -<strong> <u> <a href="/incident-detail/{{data.incidentID}}/">{{data.incidentID }}</a> </u></strong> has been updated successfully.  </center>
+
+                        </div>
+
+                        <div class="alert alert-danger col-md-12" id="danger-alert" style="display: none">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <center> <strong> Oops! </strong> Something went wrong. <br> Reason: {{errorMsg}} </center>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="card" >
+                                <div class="card-header">
+                                    <div class="card-title">
+                                        <div class="title">Incident Details - {{data.incidentID}}</div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <form class="form-horizontal" ng-submit="updateIncident(data);">
+
+                                    <div class="form-group">
+                                        <label for="incidentID" class="col-sm-4 control-label">Incident ID</label>
+                                        <div class="col-sm-2">
+                                               <input type="text" ng-disabled="true"  class="form-control" id="incidentID" ng-model="data.incidentID" value="{{data.incidentID}}" />
+                                            </div>
+                                             <label for="openDate" class="col-sm-2 control-label">Reported Date (mm/dd/yyyy)</label>
+                                            <div class="col-sm-2">
+                                            <input type="text" ng-disabled="true" required class="form-control" id="openDate" ng-model="data.reportedDate">
+                                             </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="incidentTitle" class="col-sm-4 control-label">Title</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" ng-disabled="isClosed" ng-model="data.title" required class="form-control" id="incidentTitle" placeholder="Title" >
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                        <label for="incidentDropDown" class="col-sm-4 control-label">Incident Type</label>
+                                        <div class="col-sm-2">
+                                               <select ng-disabled="isClosed" ng-model ="data.incidentType" class="form-control" id="incidentDropDown">
+                                                   <option value="Change Request">Change Request</option>
+                                                   <option value="Defect">Defect</option>
+                                                   <option value="Request for Information">Request for Information</option>
+                                               </select>
+                                            </div>
+
+                                           <label for="reportedBy" class="col-sm-2 control-label">Reported By</label>
+                                               <div class="col-sm-2">
+                                                     <input type="text" ng-disabled="true" required class="form-control" id="reportedBy" value ="{{data.reportedBy}}">
+                                                </div>
+                                        </div>
+
+                                       <div class="form-group">
+                                        <label for="applicationDropdown" class="col-sm-4 control-label">Application</label>
+                                        <div class="col-sm-2">
+                                               <select ng-disabled="isClosed" ng-model="data.application" class="form-control" id="applicationDropdown">
+                                                   
+                                                   <option value="Instore Server">Server</option>
+                                                   <option value="Instore PDA">PDA</option>
+                                                   <option value="Server and PDA">Server and PDA </option>
+                                               </select>
+                                            </div>
+                                             <label for="applnVersion" class="col-sm-2 control-label">Version</label>
+                                            <div class="col-sm-2">
+                                            <input type="text" ng-disabled="isClosed" ng-model="data.version"  required class="form-control" id="applnVersion" placeholder="Version" value="{{data.version}}">
+                                             </div>
+
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="issueType" class="col-sm-4 control-label">Resolution Type</label>
+                                            <div class="col-sm-2">
+                                                   <select ng-disabled="isClosed" ng-model="data.resolutionType" class="form-control" id="issueType">
+                                                       
+                                                       <option value="Changes">Changes</option>
+                                                       <option value="User understanding">User understanding</option>
+                                                       <option value="PDA Sync error">PDA Sync error</option>
+                                                       <option value="PDA Data Mismatch">PDA Data Mismatch</option>
+                                                       <option value="PDA Other">PDA Other</option>
+                                                       <option value="Server Web console error">Server Web console error</option>
+                                                       <option value="Server Data Mismatch">Server Data Mismatch</option>
+                                                       <option value="Server Other">Server Other</option>
+                                                       <option value="Other">Other</option>
+
+                                                   </select>
+                                                </div>
+                                                 <label for="priority" class="col-sm-2 control-label">Priority</label>
+                                                <div class="col-sm-2">
+                                                   <select ng-disabled="isClosed" ng-model="data.priority"  class="form-control" id="priority">
+                                                           
+                                                           <option value="Low">Low</option>
+                                                           <option value="Medium">Medium</option>
+                                                           <option value="High">High</option>
+                                                           <option value="Critical">Critical</option>
+                                                           
+
+                                                    </select>
+                                                 </div>
+
+                                        </div>
+
+                                        <div class="form-group">
+                                          <label for="status" class="col-sm-4 control-label">Status</label>
+                                               <div class="col-sm-2">
+                                                  <select ng-disabled="isClosed" ng-model="data.status" class="form-control" id="status">
+                                                           
+                                                           <option value="Open">Open</option>
+                                                           <option value="Accepted">Accepted</option>
+                                                           <option value="Work in progress">Work in progress</option>
+                                                           <option value="Need more information">Need more information</option>         
+                                                           <option value="Completed">Completed</option> 
+                                                           <option value="Closed">Closed</option>                                                 
+                                                           <option value="Rejected">Rejected</option>
+                                                           <option value="Re-opened">Re-opened</option>
+
+                                                    </select>
+                                                </div>
+                                           <label for="targetDate" class="col-sm-2 control-label">Release Date</label>
+                                             <div class="col-sm-2">
+                                                 <input type="date" ng-disabled="isClosed"  required class="form-control" id="targetDate" ng-model="data.releaseDate" >
+                                             </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="details" class="col-sm-4 control-label">Description</label>
+                                            <div class="col-sm-6">
+                                                <textarea  ng-model="data.description" ng-disabled="true" class="form-control" rows="15"></textarea>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="update" class="col-sm-4 control-label">Update</label>
+                                            <div class="col-sm-6">
+                                                <textarea required ng-disabled="isClosed" ng-model="data.update" class="form-control" id="update" rows="5"></textarea>
+                                            </div>
+                                        </div>
+
+
+                                       
+                                        <div class="form-group">
+                                            <div class="col-sm-offset-4 col-sm-6">
+                                                <button type="submit" ng-disabled="isClosed" class="btn btn-md btn-block btn-success">Update</button>
+                                                
+                                            </div>
+                                        </div>
+
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                </div>
+      

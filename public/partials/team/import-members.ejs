@@ -1,0 +1,108 @@
+<style>
+    .error-message {
+        color: red;
+    }
+    input.ng-dirty.ng-invalid {
+        border-color: red;
+    }
+    input[type=number]::-webkit-inner-spin-button, 
+    input[type=number]::-webkit-outer-spin-button { 
+        -webkit-appearance: none; 
+        margin: 0; 
+    }
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
+</style>
+
+<div class="container-fluid" ng-controller="teamCtrl">
+    <div class="side-body">
+        <div class = "row">
+            <div class="alert alert-success col-md-12" id="success-alert" style="display: none">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <center>Member has been registered successfully and credentials have been sent to <strong> <u>{{membermailid}}</u> </strong></center>
+            </div>
+            <div class="alert alert-danger col-md-12" id="danger-alert" style="display: none">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <center> <strong> Oops! </strong> Something went wrong. <br> Reason: {{errorMsg}} </center>
+            </div>
+            
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <div class="title">Import Members</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-body" id="import_members" style="margin-bottom: 20px;">
+                        <form class="form-horizontal" ng-submit="importMember(importFormData)" name="ImportUsersForm" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <label for="emp_fname" style="padding-top: 15px;" class="col-sm-2 control-label">Select Excel File *</label>
+                                <div class="col-sm-4">
+                                    <input type="file" ngf-select ng-model="importFormData.file" class="btn btn-file" required class="form-control" style="outline:0" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-5 col-sm-6">
+		                        	<button type="submit" class="btn btn-md btn-success">Display Members</button>
+                                </div>
+                            </div>
+                        </form>
+			            <table datatable="ng" class="table table-responsive importmembers">
+			                <thead>
+			                    <tr>
+			                       <!-- <th>First Name</th>
+			                       <th>Last Name</th> -->
+                                   <th>Name</th>
+			                       <th>Email Address</th>
+			                       <th>Location</th>
+			                       <th>Employee Id</th>
+			                       <th>Designation</th>
+			                       <th>Mobile No.</th>
+			                       <th>Alternate Mobile No.</th>
+			                       <th>Status</th>
+			                    </tr>
+			                </thead>
+			                <tbody>
+			                    <tr ng-repeat="d in UsersListToUpload">
+                                    <td>{{d.fname}}&nbsp;{{d.lname}}</td>
+			                        <td>{{d.email}}</td>
+			                        <td>{{d.location}}</td>
+			                        <td>{{d.empid}}</td>
+			                        <td>{{d.designation}}</td>
+			                        <!-- <td>{{d.mnum}}</td>  -->
+                                    <td align="center">
+                                    <span ng-if=" d.mnum !=''">{{d.mnum}}<br></span>
+                                    <span ng-if=" d.mnum === ''" >-<br></span>
+                                    </td>
+			                        <!-- <td>{{d.anum}}</td>  -->
+                                    <td align="center">
+                                    <span ng-if="d.anum !=''">{{d.anum}}<br></span>
+                                    <span ng-if="d.anum ===''">-<br></span>
+                                    </td>       
+			                        <td>
+                                    <p style="margin-left:30px;"><span ng-if="d.status === undefined">-<br></span></p>
+			                        	<b ng-if="d.status == 'success'">
+			                            	<img src="/img/member_success.png" width="40px" height="40px" alt="Member Created SucsesssFully">
+			                        	</b>
+			                        	<b ng-if="d.status == 'error'">
+			                            	<img src="/img/member_error.png" width="50px" height="40px" alt="Error">
+			                        	</b>
+			                        </td>
+			                    </tr>
+			                </tbody>
+			            </table>
+                        <div class="form-group">
+                            <div class="col-sm-offset-5 col-sm-6">
+		                        <button ng-click="CreateUsers()" class="btn btn-info">Create Users</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

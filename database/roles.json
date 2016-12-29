@@ -1,0 +1,21 @@
+{ 
+    "_id" : ObjectId("57ffb72eca437c2c6c63e33d"), 
+    "role_id" : "22797888", 
+    "name" : "Role_SuperUser", 
+    "desc" : "Its a Super User Role. This role accessible to all activities.", 
+    "__v" : 0.0
+}
+{ 
+    "_id" : ObjectId("58049c9536e1e13990240041"), 
+    "role_id" : "39656488", 
+    "name" : "role_approver", 
+    "desc" : "Approver Role. Please do not change.", 
+    "__v" : 0.0
+}
+{ 
+    "_id" : ObjectId("58049cb136e1e13990240043"), 
+    "role_id" : "10396482", 
+    "name" : "role_itteammember", 
+    "desc" : "IT Team Member Role. Please do not change.", 
+    "__v" : 0.0
+}

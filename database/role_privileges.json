@@ -1,0 +1,96 @@
+{ 
+    "_id" : ObjectId("580072040e341819c85b6831"), 
+    "role_id" : "22797888", 
+    "privilege_ref" : ObjectId("57ffb5cc631f9e40732a4dfc"), 
+    "__v" : 0.0
+}
+{ 
+    "_id" : ObjectId("580072040e341819c85b6832"), 
+    "role_id" : "22797888", 
+    "privilege_ref" : ObjectId("57ffb5cc631f9e40732a4dfd"), 
+    "__v" : 0.0
+}
+{ 
+    "_id" : ObjectId("580072040e341819c85b6833"), 
+    "role_id" : "22797888", 
+    "privilege_ref" : ObjectId("57ffb5cc631f9e40732a4dfe"), 
+    "__v" : 0.0
+}
+{ 
+    "_id" : ObjectId("580072040e341819c85b6834"), 
+    "role_id" : "22797888", 
+    "privilege_ref" : ObjectId("57ffb5cc631f9e40732a4dff"), 
+    "__v" : 0.0
+}
+{ 
+    "_id" : ObjectId("580072040e341819c85b6835"), 
+    "role_id" : "22797888", 
+    "privilege_ref" : ObjectId("57ffb5cc631f9e40732a4e00"), 
+    "__v" : 0.0
+}
+{ 
+    "_id" : ObjectId("580072040e341819c85b6836"), 
+    "role_id" : "22797888", 
+    "privilege_ref" : ObjectId("57ffb5cc631f9e40732a4e01"), 
+    "__v" : 0.0
+}
+{ 
+    "_id" : ObjectId("580072040e341819c85b6837"), 
+    "role_id" : "22797888", 
+    "privilege_ref" : ObjectId("57ffb5cc631f9e40732a4e02"), 
+    "__v" : 0.0
+}
+{ 
+    "_id" : ObjectId("580072040e341819c85b6838"), 
+    "role_id" : "22797888", 
+    "privilege_ref" : ObjectId("57ffb5cc631f9e40732a4e03"), 
+    "__v" : 0.0
+}
+{ 
+    "_id" : ObjectId("580072040e341819c85b6839"), 
+    "role_id" : "22797888", 
+    "privilege_ref" : ObjectId("57ffb5cc631f9e40732a4e04"), 
+    "__v" : 0.0
+}
+{ 
+    "_id" : ObjectId("580072040e341819c85b683a"), 
+    "role_id" : "22797888", 
+    "privilege_ref" : ObjectId("57ffb5cc631f9e40732a4e05"), 
+    "__v" : 0.0
+}
+{ 
+    "_id" : ObjectId("580072040e341819c85b683b"), 
+    "role_id" : "22797888", 
+    "privilege_ref" : ObjectId("57ffb5cc631f9e40732a4e06"), 
+    "__v" : 0.0
+}
+{ 
+    "_id" : ObjectId("580072040e341819c85b683c"), 
+    "role_id" : "22797888", 
+    "privilege_ref" : ObjectId("57ffb5cc631f9e40732a4e07"), 
+    "__v" : 0.0
+}
+{ 
+    "_id" : ObjectId("580072040e341819c85b683d"), 
+    "role_id" : "22797888", 
+    "privilege_ref" : ObjectId("57ffc183631f9e40732a4e08"), 
+    "__v" : 0.0
+}
+{ 
+    "_id" : ObjectId("58049209f6eeeb4e20547a55"), 
+    "role_id" : "22797888", 
+    "privilege_ref" : ObjectId("5800cf3622501ea641e2ff61"), 
+    "__v" : 0.0
+}
+{ 
+    "_id" : ObjectId("58049cb136e1e13990240044"), 
+    "role_id" : "10396482", 
+    "privilege_ref" : ObjectId("5800cf3622501ea641e2ff61"), 
+    "__v" : 0.0
+}
+{ 
+    "_id" : ObjectId("580da3886324bb08f8e2c87f"), 
+    "role_id" : "39656488", 
+    "privilege_ref" : ObjectId("57ffb5cc631f9e40732a4e03"), 
+    "__v" : 0.0
+}

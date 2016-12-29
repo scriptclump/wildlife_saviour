@@ -1,0 +1,116 @@
+<div ng-controller="indexCtrl" >
+    <div class="side-menu sidebar-inverse">
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="side-menu-container">
+                <div class="navbar-header">
+                    <div class="navbar-brand"><i class="icon fa fa-binoculars"></i> Wildlife Saviour</div>
+                    <button type="button" class="navbar-expand-toggle pull-right visible-xs">
+                        <i class="fa fa-times icon"></i>
+                    </button>
+                </div>
+                <div>
+                    <ul class="nav navbar-nav">
+                        <li ng-class="{ active: isActive('dashboard.main')}" ng-if="can('14764455')">
+                            <a ui-sref="dashboard.main" >
+                                <span class="icon fa fa-tachometer"></span><span class="title">Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="panel panel-default dropdown" ng-if="can('94498023') || can('97696981') || can('22797888')">
+                            <a data-toggle="collapse" href="#team-menu">
+                                <span class="icon fa fa-users"></span><span class="title">Team</span>
+                            </a>
+                            <div id="team-menu" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <ul class="nav navbar-nav">
+                                        <li ng-class="{ active: isActive('dashboard.team')}" ng-if="can('94498023')">
+                                            <a ui-sref="dashboard.team">
+                                                Members
+                                            </a>
+                                        </li>
+                                        <li ng-class="{ active: isActive('dashboard.team.addmember')}" ng-if="can('97696981')">
+                                            <a ui-sref="dashboard.addmember" >
+                                                Add Member
+                                            </a>
+                                        </li>
+                                        <li ng-class="{ active: isActive('dashboard.team.import-members')}" ng-if="can('22797888')">
+                                            <a ui-sref="dashboard.import-members" >
+                                                Import Members
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="panel panel-default dropdown" ng-if="can('16194391') || can('97696980') || can('76996988')">
+                            <a data-toggle="collapse" href="#roles-dropdown-table">
+                                <span class="icon fa fa-address-card"></span><span class="title">Roles</span>
+                            </a>
+                            <div id="roles-dropdown-table" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <ul class="nav navbar-nav">
+                                        <li ng-class="{ active: isActive('dashboard.createrole')}" ng-if="can('16194391')">
+                                            <a ui-sref="dashboard.createrole">
+                                                <span class="icon fa fa-ticket"></span><span class="title">Create Role</span>
+                                            </a>
+                                        </li>
+                                        <li ng-class="{ active: isActive('dashboard.viewroles')}" ng-if="can('97696980')">
+                                            <a ui-sref="dashboard.viewroles">
+                                                <span class="icon fa fa-ticket"></span><span class="title">View Roles</span>
+                                            </a>
+                                        </li>
+                                        <li ng-class="{ active: isActive('dashboard.assignroles')}" ng-if="can('76996988')">
+                                            <a ui-sref="dashboard.assignroles">
+                                                <span class="icon fa fa-ticket"></span><span class="title">Assign Roles</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <a ui-sref="dashboard.change-password">
+                                <span class="icon fa fa-wrench"></span><span class="title">Change Password</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+     <nav class="navbar navbar-inverse navbar-fixed-top navbar-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <ol class="breadcrumb navbar-breadcrumb" style="margin-left: 10px;">
+                    <li class="active">Can't Forget Anything</li>
+                </ol>
+            </div>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown profile">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                      Welcome <span class="animated flash">{{userObj.fName||'User'}} {{userObj.lName}}</span> <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu animated fadeInDown">
+                        <li class="profile-img"></li>
+                        <li>
+                            <div class="profile-info">
+                                <h4 class="username">{{userObj.fName||'Admin'}}</h4>
+                                <p>{{userObj.email||'admin'}}</p>
+                                <!-- <p>Role : {{userObj.accessRole}}</p> -->
+                                <div class="btn-group margin-bottom-2x" role="group">
+                                    <button type="button" class="btn btn-warning" ng-click="logoutSubmit()"><i class="fa fa-sign-out"></i> Logout</button>
+                                    <a class="btn btn-primary" href="/dashboard/team/my-profile/{{userObj._id}}">
+                                        <i class="fa fa-user"></i> Profile</a> 
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div ui-view></div>
+
+</div>
+
+

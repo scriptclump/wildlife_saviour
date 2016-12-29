@@ -1,0 +1,59 @@
+<nav class="login_navbar navbar navbar-inverse navbar-fixed-top navbar-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+		    <ol class="breadcrumb navbar-breadcrumb">
+		        <li class="active">&nbsp;<i class="fa fa-binoculars"></i>&nbsp;Wildlife Saviour</li>
+		    </ol>
+        </div>
+    </div>
+</nav>
+<!--ng-controller="loginAppCtrl"-->
+<div class="login-box container" ng-controller="loginAppCtrl">
+    <div class="col-xs-6 col-xs-offset-3">
+        <div class="card login-form">
+            <div class="card-header">
+                <div class="card-title">
+                    <div class="title">Login</div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="progress" id="login-progress" ng-class="{
+                            hidden:!loginProgress
+                        }">
+                    <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                        Log In...
+                    </div>
+                </div>
+                <div class="alert alert-danger col-md-12" id="danger-alert" style="display: none">
+                    <!--                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>-->
+                    <center> <strong> Oops! </strong><br> Reason: {{errorMsg}} </center>
+                </div>
+                <div class="alert alert-warning"  ng-show="showreloginMsg"  role="alert">
+                    Password Changed Successfully Please Re-login Again
+                </div>
+                <form class="form-horizontal" ng-submit="loginSubmit(login)">
+                    <div class="form-group">
+                        <label for="user_email" class="col-sm-2 control-label">Email</label>
+                        <div class="col-sm-10">
+                            <input type="email" class="form-control" id="user_email" placeholder="Email" ng-model="login.email" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="user_pwd" class="col-sm-2 control-label" >Password</label>
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control" id="user_pwd" placeholder="Password" ng-model="login.password" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-primary" value="Login">Sign in</button>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <a href="/forgot-password" class=""><span class="text-right">Forgot Password?</span>&nbsp;<i class="ace-icon fa fa-arrow-right"></i></a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

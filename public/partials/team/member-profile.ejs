@@ -1,0 +1,97 @@
+<!--<h1>Load member Profile  page</h1>-->
+<div ng-controller="teamCtrl" ng-init="getMemberDetail();" >
+    <div class="container-fluid" ng-show="isVisible">
+        <div class="side-body" >
+            <div class="row">
+                <div class="alert alert-success col-md-12" id="success-alert" style="display: none">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <center>profile has been updated successfully.  </center>
+
+                </div>
+
+                <div class="alert alert-danger col-md-12" id="danger-alert" style="display: none">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <center> <strong> Oops! </strong> Something went wrong. <br> Reason: {{errorMsg}} </center>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="card" >
+                        <div class="card-header">
+                            <div class="card-title">
+                                <div class="title"><b>Member Details</b></div>
+                            </div>
+                        </div>
+                        <!--                        {{data}}-->
+                        <div class="card-body">
+
+                         
+                            <form class="form-horizontal" ng-submit="updateProfile(data);">
+                                <div class="form-group">
+                                    <label for="emp_fname" class="col-sm-2 control-label">First Name :</label>
+                                    <div class="col-sm-4 offset">
+                                        {{data.fName}}
+                                    </div>
+                                    <label for="emp_lname" class="col-sm-2 control-label">Last Name :</label>
+                                    <div class="col-sm-4 offset">
+                                       {{data.lName}}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="emp_email" class="col-sm-2 control-label">Email ID :</label>
+                                    <div class="col-sm-4 offset">
+                                       {{data.email}}
+                                    </div>
+                                    <label for="emp_location" class="col-sm-2 control-label">Location :</label>
+                                    <div class="col-sm-4 offset">
+                                   {{data.location}}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="emp_ID" class="col-sm-2 control-label">Employee ID :</label>
+                                    <div class="col-sm-4 offset">
+                                       <p ng-if="data.empID!=''">{{data.empID}}<br></p>
+                                        <p ng-if="data.empID===''">---<br></p>
+                                    </div>
+                                    <label for="emp_dsign" class="col-sm-2 control-label">Role :</label>
+                                    <div class="col-sm-4 offset">
+                                      <p ng-if="data.designation!=''">{{data.designation}}<br></p>
+                                        <p ng-if="data.designation===''">---<br></p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="emp_mno" class="col-sm-2 control-label">Mobile Number :</label>
+                                    <div class="col-sm-4 offset">
+                                        <p ng-if="data.mNum!=''">{{data.mNum}}<br></p>
+                                        <p ng-if="data.mNum===''">---<br></p>
+                                    </div>
+                                    <label for="emp_ano" class="col-sm-2 control-label">Alternative Number :</label>
+                                    <div class="col-sm-4 offset">
+                                        <p ng-if="data.aNum!=''">{{data.aNum}}<br></p>
+                                        <p ng-if="data.aNum===''">---<br></p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                	<label for="emp_email" class="col-sm-2 control-label">Role(s) :</label>
+                                	<div class="col-sm-4">
+										<span style="font-size: 16px; padding-top: 7px; display: inline-block;" ng-repeat="role in data.roles">
+			                        		{{role}}{{$last ? '' : ($index==role.role.length-1) ? ' ' : ', '}}
+			                        	</span>
+                                	</div>
+                            	</div>
+                                <div class="form-group" ng-if="can('71521952')">
+                                    <div class="col-sm-offset-4 col-sm-6">
+	                                    <a href="/dashboard/team/member/{{data._id}}" class="btn btn-md btn-danger" style="background-color: #1abc9c;border:none;">Edit Profile</a></b>
+                                        <a ui-sref="dashboard.team" class="btn btn-md btn-info">Cancel</a>
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

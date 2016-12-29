@@ -1,0 +1,157 @@
+<div class="container-fluid" ng-controller="searchDateCtrl">
+    <div class="side-body">
+
+        <div class = "row">
+
+            <div class="col-xs-12">
+                <div class="alert alert-danger col-md-12" id="danger-alert" style="display: none">
+                    <center> {{errorMsg}}  </center>
+                </div>
+                <!-- Dates Should be in Proper Order-->
+                <!--<div class="alert alert-danger col-md-12" id="no-records" style="display: none">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <center> <strong> Sorry! </strong> No Records Found.... </center>
+                </div> -->
+                <!-- EOF Dates Should be in Proper Order-->
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <div class="title">Search by Date</div>
+                        </div>
+                    </div>
+                    <div class="card-body showpicker">
+                        <form class="form-horizontal" ng-submit="searchByDate(dateObj);">
+
+                            <div class="form-group">
+                                <label for="fromDate" class="col-sm-2 control-label" >From Date :</label>
+                                <div class="col-sm-3">
+                                	<!-- <input type="text" id="start_date" datepicker-popup="MM/dd/yyyy" is-open="beginDatePickerOpen" ng-model="dateObj.fromDate"/>
+                                	<button type="button" ng-click="openFromDatePicker($event)" ><i class="fa fa-calendar"></i></button> -->
+                                	<input type="text" id="start_date"  ng-model="dateObj.fromDate" class="readonly" required />
+                                </div>
+                                <label for="toDate" class="col-sm-2 control-label">To Date :</label>
+                                <div class="col-sm-3">
+                                	<!-- <input type="text" id="end_date" min-date="dateObj.fromDate" datepicker-popup="MM/dd/yyyy" is-open="endDatePickerOpen" ng-model="dateObj.toDate"/>
+                                	<button type="button" ng-click="openToDatePicker($event)" ><i class="fa fa-calendar"></i></button> -->
+                                	<input type="text" id="end_date" class="readonly" ng-model="dateObj.toDate" required/>
+                                </div>
+                                <div class="col-sm-2">
+                                      <button type="submit" class="btn btn-md btn-block btn-success">Search by Date</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>                
+                <script type="text/javascript">
+                $(document).ready(function(){
+	                $('#start_date').datepicker({
+					    format: 'mm/dd/yyyy',
+					    autoclose: true,
+    					todayHighlight: true
+					});
+	                $('#end_date').datepicker({
+					    format: 'mm/dd/yyyy',
+					    autoclose: true,
+    					todayHighlight: true
+					});
+                });
+                  $(".readonly").keydown(function(e){
+                  e.preventDefault();
+                  });
+                </script>
+                     
+                <div ng-show="dateRangeResult">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">
+                                <div class="title">Results</div>
+                            </div>
+                        </div>
+                        <div class="card-body" id="exportable">
+                        <!-- Exporting Data to Excel Format @ 04/10/2016 -->
+                        <table id="searchData2"  class="row-border hover" style="display: none;">
+                                <thead>
+                                    <tr>
+                                        <th>Ticket ID</th>
+                                        <th>Subject</th>
+                                        <th>Status</th>
+                                        <th>Created Date</th>
+                                        <th>Description</th>
+                                        <th>Assigned To</th>
+                                        <th>Priority</th> 
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="y in data">
+                                        <th>
+                                            <u>
+                                                {{y.ticketID}}
+                                            </u>
+                                        </th>
+                                        <th>
+                                            {{y.title}}                      
+                                        </th>
+                                        <td>{{y.status}}</td>
+                                        <td>{{y.reportedDate| date:'MM/dd/yyyy'}}</td>
+                                        <td>
+                                            {{y.description}}
+                                        </td>
+                                        <td>{{y.assign_to.fName}}&nbsp;{{y.assign_to.lName}}</td>
+                                        <td>{{y.priority}}</td>              
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <!-- EOF  Exporting Data to Excel Format -->
+
+                            <table datatable="ng" id="searchData"  class="row-border hover">
+                                <thead>
+                                    <tr>
+                                        <th>Ticket ID</th>
+                                        <th>Subject</th>
+                                        <th>Status</th>
+                                        <th>Created Date</th>
+                                        <th>Description</th>
+                                        <th>Assigned To</th>
+                                        <th>Priority</th> 
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="y in data | orderBy: '-ticketID'">
+                                        <td ng-if="!can('22797888')">
+                                            <a style="font-weight: 600;text-decoration: underline;" href="/dashboard/tickets/ticket-detail/{{y.ticketID}}" style="text-decoration: none;">{{y.ticketID}}</a>
+                                        </td>
+                                        <td ng-if="can('22797888')">
+                                            {{y.ticketID}}
+                                        </td>
+                                        <th ng-init="limit = 9; moreShown = false">
+                                            {{y.title| limitTo: limit}}<a ng-show="y.title.length > limit" href ng-click="limit = y.title.length; moreShown = true">... </a>                        
+                                        </th>
+                                        <td>{{y.status}}</td>
+                                        <td>{{y.reportedDate| date:'MM/dd/yyyy'}}</td>
+                                        <td>
+                                            <a  href="#" tooltip-placement="right" tooltip="{{y.description}}" class="red-tooltip">{{y.description|limitTo:20}}</a>
+                                        </td>
+                                        <!-- <td>{{y.assign_to.fName}}&nbsp;{{y.assign_to.lName}}</td> -->
+                                         <td>
+                                             <span ng-if=" y.assign_to.fName != undefined">{{y.assign_to.fName}}&nbsp;{{y.assign_to.lName}}<br></span>
+                                             <p style="margin-left:30px;"><span ng-if=" y.assign_to.fName === undefined">-<br></span></p>
+                                        </td>
+                                        <td>{{y.priority}}</td>              
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <button class="btn btn-link" ng-click="exportData('searchData2')">
+                            <span class="glyphicon glyphicon-share"></span> Export to Excel
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

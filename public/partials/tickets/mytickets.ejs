@@ -1,0 +1,73 @@
+
+<div class="container-fluid" ng-controller="ticketCtrl" ng-init="loadMyTicketsTable();">
+    <div class="side-body padding-top">
+        <div>
+            <div class="panel fresh-color panel-success">
+                <!-- Default panel contents -->
+                <div class="panel-heading">My Tickets</div>
+                <div class="table-responsive">
+                    <!-- Table -->
+                    <table class="table" datatable="ng" width="100%" dt-options="dtOptions">
+                        <thead>
+                            <tr>
+                                <th>Ticket ID</th>
+                                <th>Subject</th>
+                                <th>Assigned To</th>
+                                <th>Type</th>
+                                <th>Created Date</th>
+                                <th>Closed Date</th>
+                                <th>Priority</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="y in ticketsList">
+                                <td>
+                                    <u><a href="/dashboard/tickets/ticket-detail/{{y.ticketID}}">{{y.ticketID}}</a></u>
+                                </td>
+                                <td ng-init="limit = 9; moreShown = false">
+                                    {{y.title| limitTo: limit}}<a ng-show="y.title.length > limit" href ng-click="limit = y.title.length; moreShown = true">... </a>                     	
+                                </td>
+                                <!-- <td>{{y.assign_to.fName}}&nbsp;{{y.assign_to.lName}}</td> -->
+                                <td >
+                                    <p style="margin-left:10px;"> <span ng-if=" y.assign_to.fName != undefined">{{y.assign_to.fName}}&nbsp;{{y.assign_to.lName}}<br></span></p>
+                                   <p style="margin-left:35px;"> <span ng-if=" y.assign_to.fName === undefined" >-<br></span></p>
+                                </td>
+                                <!-- <td>{{y.issue_type_cat_1}}</td> -->
+                                <td>
+                                   <p style="margin-left:10px; text-transform: capitalize;"> <span ng-if=" y.issue_type_cat_1 != undefined" >{{y.issue_type_cat_1}}<br></span></p>
+                                   <p style="margin-left:20px;"> <span ng-if=" y.issue_type_cat_1 === null" >-<br></span></p>
+                                </td>
+                                <td>{{y.reportedDate| date:'MM/dd/yyyy'}}</td> 
+                                <!-- <td>{{y.closedDate| date:'MM/dd/yyyy'}}</td> -->
+                                <td>
+                                    <p style="margin-left:10px;"> <span ng-if=" y.closedDate != undefined" >{{y.closedDate| date:'MM/dd/yyyy'}}<br></span></p>
+                                    <p style="margin-left:35px;"><span ng-if=" y.closedDate === null" >-<br></span></p>
+                                </td>
+                                <td>{{y.priority}}</td>
+                                <td>{{y.status}}</td>
+                            </tr>
+                        </tbody>
+                    </table>           
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/ng-template" id="modal.html">
+        <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+        <div class="title ng-binding">
+        <h3>Description</h3>
+        </div>
+        </div>
+        </div>
+        <div class="modal-body" id="modal-body">
+        <div  ng-bind-html="descrip | renderHtml"> </div> 
+        </div>
+        <div class="modal-footer">
+        <button class="btn btn-default" ng-click="close()">Close</button>
+        </div>
+        </div>
+    </script>
+</div>

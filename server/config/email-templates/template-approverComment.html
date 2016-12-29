@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta name="viewport" content="width=device-width" />
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>New Ticket Alert</title>
+ </head>
+ <body style="width: 100%; margin: 0; padding: 0; color: #000; font: normal 13px Arial, Helvetica, sans-serif;">
+	<font face="normal Arial, Helvetica, sans-serif, 10pt">
+		<table style="width: 100%; font: normal 13px Arial, Helvetica, sans-serif;" cellpadding="0" cellspacing="0">
+			<tr>
+				<td align="left" style="width: 90%; padding: 0 5%;">
+					<p>&nbsp;</p>
+					<table align="left" style="width: 100%; font: normal 13px Arial, Helvetica, sans-serif;" cellpadding="0" cellspacing="0">
+						<tr>
+							<td style="padding-bottom: 10px;">
+							<div style="float:left;">
+							<img src="http://www.charterglobal.com/wp-content/uploads/2016/08/Charter-Global-Logo.jpg" alt="CHARTER_GLOBAL" /></div>
+							<div align="right" style="margin-top:30px;">
+								<p align ="right" style="font-size:20px;color:#000066;"><b>IT HELP DESK</b></p></div>
+							</td>
+						</tr>
+						<tr>
+							<td style="border-top: 1px solid #ccc; border-bottom: 2px solid #ccc; padding: 10px;">
+								<p style="font-size: 13px;text-transform: capitalize;">Hi {{approverName}},</p>
+								<p style="padding: 0 0px;">
+									We need your approval for this ticket. Ticket ID: <b>{{ticketID}}</b>.<!--  Following are the ticket details: -->
+								</p>
+                                <br>
+															
+								<p><b>Following are Ticket Description:</b></p>
+								<pre  style=" width:500px; border-width:2px 2px 2px 2px; border-style:solid; border-color:#808080; font-family:arial;  padding:10px 20px;">{{description}}</pre>
+
+								<!-- <p style="padding: 0 0px;">
+	                                <h3>Need Approval for this ticket. Below is the ticketDetail link</h3>
+	                                <a href="{{link}}" target="_self">{{link}}</a>
+	                                <p>Please login to the application to provide comments (or) 
+	                                Please Reply back to the mail without deleting subject line.</p>
+								</p> -->
+								<!-- <p style="margin-top: 15px; padding: 0 0px;">
+									{{TicketID}} requested permissions. Registered Ticket ID : <b>{{TicketID}}</b>.
+								</p> -->
+								<!-- <p style="padding: 0 0px;">
+									Ticket Description:<br/><br/>
+									{{description|safe}}
+								</p> -->
+								<p style="padding: 0 0px;">
+									<a href="{{link}}" target="_blank" style="color: #2c3e50;"><b>Click Here</b></a> for more details.
+								</p>
+								<p style="padding: 0 0px;">
+									Please login to the application to provide comments. (or) 
+									Please reply back to the mail without deleting subject line.
+								</p>
+								<p style="padding: 0 0px;">
+									Thanks & Regards,<br/>
+									ITHelpDesk Team
+								</p>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td style="margin-top: 25px; text-align: center; font: normal 12px Arial, Helvetica, sans-serif;" cellpadding="20">
+										
+					<p align="left" style="margin-left:5%;">&copy;<b> 2016 Charter Global, All rights reserved.</b></p>
+				</td>
+			</tr>
+		</table>
+	</font>
+ </body>
+</html>

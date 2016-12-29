@@ -1,0 +1,199 @@
+<div class="container-fluid" ng-controller="dashboardCtrl" ng-init="initProcess();">
+    <div class="side-body padding-top">
+        <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 animated fadeInLeftBig">
+                <a ui-sref="dashboard.tickets({searchField:'unsolved_tickets'})">
+                    <div class="card blue summary-inline">
+                        <div class="card-body">
+                            <i class="icon fa fa-user fa-4x"></i>
+                            <div class="content">
+                                <div class="title">100</div>
+                                <div class="sub-title">Total Users</div>
+                            </div>
+                            <div class="clear-both"></div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 animated fadeInLeftBig">
+                <a ui-sref="dashboard.tickets({searchField:'requests'})">
+                    <div class="card green summary-inline">
+                        <div class="card-body">
+                            <i class="icon fa fa-pencil-square-o fa-4x"></i>
+                            <div class="content">
+                                <div class="title">70</div>
+                                <div class="sub-title">Active Users</div>
+                            </div>
+                            <div class="clear-both"></div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 animated fadeInRightBig">
+                <a ui-sref="dashboard.tickets({searchField:'tat_tickets'})">
+                    <div class="card red summary-inline">
+                        <div class="card-body">
+                            <i class="icon fa fa-exclamation-triangle fa-4x"></i>
+                            <div class="content">
+                                <div class="title">20</div>
+                                <div class="sub-title">Inactive Users</div>
+                            </div>
+                            <div class="clear-both"></div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 animated fadeInRightBig">
+                <a ui-sref="dashboard.tickets({searchField:'issues'})">
+                    <div class="card yellow summary-inline">
+                        <div class="card-body">
+                            <i class="icon fa fa-wrench fa-4x"></i>
+                            <div class="content">
+                                <div class="title">10</div>
+                                <div class="sub-title">Users disable by admin</div>
+                            </div>
+                            <div class="clear-both"></div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+       <!--  <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <div class="panel fresh-color panel-info">
+                <div class="panel-heading">New Tickets</div>
+                    <table class="table" datatable="ng" width="100%" dt-options="newTickets">
+                        <thead>
+                            <tr>
+                                <th>Ticket ID</th>
+                                <th>Subject</th>
+                                <th>Created on</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="x in data=(NewTickets)">
+                                <th>
+                                    <u>
+                                        <a href="/dashboard/tickets/ticket-detail/{{x.ticketID}}">{{x.ticketID}}</a>
+                                    </u>
+                                </th>
+                                <td>{{x.title|limitTo:50}}...</td>
+                                <td>
+                                    <span ng-if="x.reportedDate">{{ x.reportedDate | date:"MM/dd/yyyy 'at' h:mma"}}</span>
+                                    <span ng-if="!x.reportedDate">-</span>                                    
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table> 
+               </div>
+
+                <div class="panel fresh-color panel-primary">
+                    <div class="panel-heading">Pending Tickets</div>
+                    <table class="table" datatable="ng" width="100%" dt-options="pendingTickets" >
+                        <thead>
+                            <tr>
+                                <th>Ticket ID</th>
+                                <th>Subject</th>
+                                <th>Assigned To</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="z in PendingTickets |orderBy: '-ticketID'">
+                                <th>
+                                    <u>
+                                        <a href="/dashboard/tickets/ticket-detail/{{z.ticketID}}">{{z.ticketID}}</a>
+                                    </u>
+                                </th>
+                                <td>{{z.title}}</td>
+                                <td>
+                                    <span ng-if=" z.assign_to.fName != undefined">{{z.assign_to.fName}}&nbsp;{{z.assign_to.lName}}<br></span>
+                                    <span ng-if=" z.assign_to.fName === undefined" >-<br></span>
+                                </td>
+                                <td>
+                                <span ng-if="z.changed_status_time">{{ z.changed_status_time | date:"MM/dd/yyyy 'at' h:mma"}}</span>
+                                    <span ng-if="!z.changed_status_time">-</span></td>
+                            </tr>                            
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="panel fresh-color panel-primary">
+                    <div class="panel-heading">Work in Progress Tickets</div>
+                    <table class="table" datatable="ng" width="100%" dt-options="WorkinProgressTicket" >
+                        <thead>
+                            <tr>
+                                <th>Ticket ID</th>
+                                <th>Subject</th>
+                                <th>Assigned To</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="z in WorkinProgressTickets |orderBy: '-ticketID'">
+                                <th>
+                                    <u><a href="/dashboard/tickets/ticket-detail/{{z.ticketID}}">{{z.ticketID}}</a></u>
+                                </th>
+                                <td>{{z.title|limitTo:50}}..</td>
+                               <td>
+                                    <span ng-if=" z.assign_to.fName != undefined">{{z.assign_to.fName}}&nbsp;{{z.assign_to.lName}}<br></span>
+                                    <span ng-if=" z.assign_to.fName === undefined" >-<br></span>
+                               </td>
+                                <td><span ng-if="z.changed_status_time">{{ z.changed_status_time | date:"MM/dd/yyyy 'at' h:mma"}}</span>
+                                <span ng-if="!z.changed_status_time">-</span>
+                                </td>
+                            </tr>                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <div class="panel fresh-color panel-success">
+                    <div class="panel-heading">My Assigned Tickets</div>
+                    <table class="table" datatable="ng" width="100%" dt-options="MyAssignedTickets">
+                        <thead>
+                            <tr>
+                                <th>Ticket ID</th>
+                                <th>Subject</th>
+                                <th>TAT(hrs)</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="y in data=(MyTickets|filter:{assign_to:userObj._id}|filter:{status:'!Close'}) |orderBy: -'ticketID'">
+                                <th><u><a href="/dashboard/tickets/ticket-detail/{{y.ticketID}}">{{y.ticketID}}</a></u></th>
+                                <td>{{y.title|limitTo:50}}..</td>
+                                <td>{{y.tat_time}}</td>
+                                <td>{{y.status}}</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="panel fresh-color panel-primary">
+                    <div class="panel-heading">TAT Exceeded Tickets</div>
+                     <table class="table" datatable="ng" width="100%" dt-options="TATExceededTickets">
+                        <thead>
+                            <tr>
+                                <th>Ticket ID</th>
+                                <th>Subject</th>
+                                <th>Assigned To</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="z in TimeExceededTickets  |orderBy: '-ticketID'">
+                                <th><u><a href="/dashboard/tickets/ticket-detail/{{z.ticketID}}">{{z.ticketID}}</a></u></th>
+                                <td>{{z.title}}</td>
+                                <td>
+                                    <span ng-if=" z.assign_to.fName != undefined">{{z.assign_to.fName}}&nbsp;{{z.assign_to.lName}}<br></span>
+                                    <span ng-if=" z.assign_to.fName === undefined" >-<br></span>
+                                </td>
+                                <td>{{z.status}}</td>
+                            </tr>                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div> -->
+    </div>

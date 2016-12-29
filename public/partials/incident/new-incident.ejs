@@ -1,0 +1,76 @@
+<div class="container-fluid" ng-controller="incidentCtrl">
+    <div class="side-body">
+        <div class = "row">
+            <div class="alert alert-success col-md-12" id="success-alert" style="display: none">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <center> Member -<strong> <u> <a href="/incident-detail/{{incidentID}}/">{{incidentID}}</a> </u></strong> has been created.  </center>
+            </div>
+            <div class="alert alert-danger col-md-12" id="danger-alert" style="display: none">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <center> <strong> Oops! </strong> Something went wrong. <br> Reason: {{errorMsg}} </center>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <div class="title">Add New Member</div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <form class="form-horizontal" ng-submit="createIncident(data);">
+                            <div class="form-group">
+                                <label for="emp_ID" class="col-sm-2 control-label">Employee ID</label>
+                                <div class="col-sm-4">
+                                    <input type="text" ng-model="data.empID" required class="form-control" id="emp_ID" placeholder="EMP ID">
+                                </div>
+                                <label for="emp_dsign" class="col-sm-2 control-label">Designation</label>
+                                <div class="col-sm-4">
+                                    <input type="text" ng-model="data.designation" required class="form-control" id="emp_dsign" placeholder="Designation">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="emp_fname" class="col-sm-2 control-label">First Name</label>
+                                <div class="col-sm-4">
+                                    <input type="text" ng-model="data.fName" required class="form-control" id="emp_fname" placeholder="First Name">
+                                </div>
+                                <label for="emp_lname" class="col-sm-2 control-label">Last Name</label>
+                                <div class="col-sm-4">
+                                    <input type="text" ng-model="data.lName" required class="form-control" id="emp_fname" placeholder="Last Name">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="emp_mno" class="col-sm-2 control-label">Mobile Number</label>
+                                <div class="col-sm-4">
+                                    <input type="number" ng-model="data.mNum" required class="form-control" id="emp_mno" placeholder="Mobile Number">
+                                </div>
+                                <label for="emp_ano" class="col-sm-2 control-label">Alternative Number</label>
+                                <div class="col-sm-4">
+                                    <input type="number" ng-model="data.aNum" required class="form-control" id="emp_ano" placeholder="Alternative Number">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="emp_email" class="col-sm-2 control-label">Email ID</label>
+                                <div class="col-sm-4">
+                                    <input type="email" ng-model="data.email" required class="form-control" id="emp_email" placeholder="xyz@domain.com">
+                                </div>
+                                <label for="emp_location" class="col-sm-2 control-label">Location</label>
+                                <div class="col-sm-4">
+                                    <input type="text" ng-model="data.location" required class="form-control" id="emp_location" placeholder="xyz@domain.com">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-4 col-sm-6">
+                                    <button type="submit" ng-hide="submitButtonClass"  class="btn btn-md btn-success">Create</button>
+                                    <button type="button"  ng-hide="resetButtonClass" ng-click="resetForm();" class="btn btn-md btn-warning">Reset</button>
+                                    <button type="button"  ng-show="createNewButtonClass" ng-click="newIncident();" class="btn btn-md btn-info">Create New Incident</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

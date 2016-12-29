@@ -1,0 +1,12 @@
+{ 
+    "_id" : ObjectId("5816e0a2a0079d056c23b539"), 
+    "ticketID" : "1476969063969", 
+    "reportedBy" : "Super", 
+    "reportedByEmail" : "superuser@charterglobal.com", 
+    "comment" : "working on this", 
+    "commentedByID" : ObjectId("57e53474e4da70181cf869c2"), 
+    "commentedByName" : "SuperUser", 
+    "comment_type" : "team_team", 
+    "created" : ISODate("2016-10-31T06:11:46.102+0000"), 
+    "__v" : 0.0
+}

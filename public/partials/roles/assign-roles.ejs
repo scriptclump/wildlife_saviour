@@ -1,0 +1,56 @@
+
+<div class="container-fluid" ng-controller="rolesCtrl">
+    <div class="side-body">
+        <div class = "row">
+            <div class="alert alert-success col-md-12" id="success-alert" style="display: none">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <center>Role(s) has been assigned successfully</center>
+            </div>
+            <div class="alert alert-danger col-md-12" id="danger-alert" style="display: none">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <center> <strong> Oops! </strong> Something went wrong. <br> Reason: {{errorMsg}} </center>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="card animated zoomIn">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <div class="title">Assign Roles</div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <form id="roleForm" class="form-horizontal" ng-submit="assignUserRoles(auth);" name="roleForm">
+                            <div class="form-group">
+                                <label for="roleName" class="col-sm-2 control-label">Select User *</label>
+                                <div class="col-sm-4" ng-init="loadMembersTable();">
+                                	<!-- <select ng-options="member.email as member.fName+' '+member.lName for member in members track by member._id" ng-model="auth.username"></select> -->
+	                                <select class="form-control" name="username" id="username" ng-model="auth.username" ng-change="updateUserRoleInfo(auth)">
+	                                	<option value="" selected="selected">Select User</option>
+	                                	<option value="{{member.email}}" ng-repeat="member in members">
+	                                		{{member.fName}}  {{member.lName}}
+	                                	</option>
+	                                </select>
+                                </div>
+                                <label for="roleName" class="col-sm-2 control-label">Roles *</label>
+                                <div class="col-sm-4" ng-init="getRolesList();">
+	                                <select class="form-control" name="roles" id="roles" ng-model="auth.roles" size="6" multiple>
+	                                	<option value="{{role._id}}" ng-repeat="role in roles">
+	                                		{{role.name}}
+	                                	</option>
+	                                </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-5 col-sm-6">
+                                    <button type="submit" class="btn btn-md btn-info">Submit</button>
+                                    <button type="button" onclick="javascript:window.location='/dashboard/view-roles';" class="btn btn-md btn-info">Cancel</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

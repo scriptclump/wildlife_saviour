@@ -1,0 +1,87 @@
+<style>
+    .error-message {
+        color: red;
+    }
+    input.ng-dirty.ng-invalid {
+        border-color: red;
+    }
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
+</style>
+<script>
+  // Use Chance
+  //alert("Chance Integer :: "+chance.integer({min: 1000000, max: 9999999}));
+</script>
+<div class="container-fluid" ng-controller="rolesCtrl" ng-init="getPrivileges();">
+    <div class="side-body">
+        <div class = "row">
+            <div class="alert alert-success col-md-12" id="success-alert" style="display: none">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <center>Role has been created successfully</center>
+            </div>
+            <div class="alert alert-danger col-md-12" id="danger-alert" style="display: none">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <center> <strong> Oops! </strong> Something went wrong. <br> Reason: {{errorMsg}} </center>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="card animated zoomIn">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <div class="title">Create New Role</div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <form id="roleForm" class="form-horizontal" ng-submit="createRole(role);" name="roleForm">
+                            <div class="form-group">
+                                <label for="roleName" class="col-sm-2 control-label">Select Role *</label>
+                                <div class="col-sm-2" ng-init="getRolesList();">
+	                                <select name="roles" id="roles" ng-model="role.editrole" class="form-control"
+	                                	ng-change="updateRoleInfo(role)">
+	                                	<option value="" selected="selected">Select Role</option>
+	                                	<option value="{{role.role_id}}" ng-repeat="role in roles">
+	                                		{{role.name}}
+	                                	</option>
+	                                </select>
+                                </div>
+	                            <label class="col-sm-2 control-label center">(or)</label>
+                            </div>
+                            <div class="form-group">
+                                <label for="roleName" class="col-sm-2 control-label">Role Name *</label>
+                                <div class="col-sm-2">
+                                    <input type="text"  name="roleName" ng-model="role.rolename"  class="form-control" id="role_name" placeholder="Role Name" required>
+                                </div>
+                                <label for="roleName" class="col-sm-2 control-label">Role Description *</label>
+                                <div class="col-sm-4">
+                                    <textarea type="text" name="roleDesc" ng-model="role.roledesc" class="form-control" id="role_desc" placeholder="Role Description" required></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-5 col-sm-6">
+                                    <button type="submit" class="btn btn-md btn-info">Submit</button>
+                                    <button type="button" onclick="javascript:window.location='/dashboard/view-roles';" class="btn btn-md btn-info">Cancel</button>
+                                </div>
+                            </div>
+                            <fieldset>
+                            	<legend>Privileges *</legend>
+	                            <div class="privileges_list">
+	                            	<div class="col-sm-12 col-md-3" ng-repeat="privilege in data">
+										<input type="checkbox" class="privilege_item" name="privilegeslist" id="{{privilege._id}}" checklist-model="userSel.privileges" checklist-value="privilege._id">
+										<span class="privilege_name">{{privilege.name}}</span>
+	                            	</div>
+	                            </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

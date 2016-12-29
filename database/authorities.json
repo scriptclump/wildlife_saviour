@@ -1,0 +1,12 @@
+{ 
+    "_id" : ObjectId("57ffb8e5ca437c2c6c63e34a"), 
+    "email" : "superuser@scriptclump.com", 
+    "role_id" : ObjectId("57ffb72eca437c2c6c63e33d"), 
+    "__v" : 0.0
+}
+{ 
+    "_id" : ObjectId("5816eea2a0079d056c23b53a"), 
+    "email" : "basant@scriptclump.com", 
+    "role_id" : ObjectId("57ffb72eca437c2c6c63e33d"), 
+    "__v" : 0.0
+}

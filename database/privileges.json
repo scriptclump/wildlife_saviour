@@ -1,0 +1,84 @@
+{ 
+    "_id" : ObjectId("57ffb5cc631f9e40732a4dfc"), 
+    "privilege_id" : "97696981", 
+    "name" : "Add Member", 
+    "desc" : "To create new user"
+}
+{ 
+    "_id" : ObjectId("57ffb5cc631f9e40732a4dfd"), 
+    "privilege_id" : "71521952", 
+    "name" : "Edit Member", 
+    "desc" : "To Edit existing user"
+}
+{ 
+    "_id" : ObjectId("57ffb5cc631f9e40732a4dfe"), 
+    "privilege_id" : "94498023", 
+    "name" : "View All Members", 
+    "desc" : "To view all users in the system"
+}
+{ 
+    "_id" : ObjectId("57ffb5cc631f9e40732a4dff"), 
+    "privilege_id" : "80028564", 
+    "name" : "View Member Details", 
+    "desc" : "To view all user details in the system"
+}
+{ 
+    "_id" : ObjectId("57ffb5cc631f9e40732a4e00"), 
+    "privilege_id" : "78894315", 
+    "name" : "Create Ticket", 
+    "desc" : "To create new ticket"
+}
+{ 
+    "_id" : ObjectId("57ffb5cc631f9e40732a4e01"), 
+    "privilege_id" : "54235796", 
+    "name" : "View All Tickets", 
+    "desc" : "To view all tickets in the system"
+}
+{ 
+    "_id" : ObjectId("57ffb5cc631f9e40732a4e02"), 
+    "privilege_id" : "64159294", 
+    "name" : "View All Ticket Details", 
+    "desc" : "To view all ticket details in the system"
+}
+{ 
+    "_id" : ObjectId("57ffb5cc631f9e40732a4e03"), 
+    "privilege_id" : "37810236", 
+    "name" : "Approver", 
+    "desc" : "Permission to Approve ticekts"
+}
+{ 
+    "_id" : ObjectId("57ffb5cc631f9e40732a4e04"), 
+    "privilege_id" : "16194391", 
+    "name" : "Create Role", 
+    "desc" : "To create new Roles"
+}
+{ 
+    "_id" : ObjectId("57ffb5cc631f9e40732a4e05"), 
+    "privilege_id" : "698569358", 
+    "name" : "Edit Role", 
+    "desc" : "To edit existing Roles"
+}
+{ 
+    "_id" : ObjectId("57ffb5cc631f9e40732a4e06"), 
+    "privilege_id" : "97696980", 
+    "name" : "View Roles", 
+    "desc" : "View all role permissions"
+}
+{ 
+    "_id" : ObjectId("57ffb5cc631f9e40732a4e07"), 
+    "privilege_id" : "76996988", 
+    "name" : "Assign Roles", 
+    "desc" : "Assign one or more Roles to the existing users"
+}
+{ 
+    "_id" : ObjectId("57ffc183631f9e40732a4e08"), 
+    "privilege_id" : "99978328", 
+    "name" : "Reports", 
+    "desc" : "Access to all reports"
+}
+{ 
+    "_id" : ObjectId("5800cf3622501ea641e2ff61"), 
+    "privilege_id" : "14764455", 
+    "name" : "IT Team Members", 
+    "desc" : "Access tickets to all IT Team Members"
+}

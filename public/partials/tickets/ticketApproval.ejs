@@ -1,0 +1,37 @@
+<div class="container-fluid" ng-controller="ticketCtrl" ng-init="loadTicketsForApproval();">
+    <div class="side-body padding-top">
+        <div class="panel fresh-color panel-success">
+            <div class="panel-heading">
+                <div class="title">Approval Tickets</div>
+            </div>
+            <table datatable="ng" class="table table-responsive" dt-options="dtOptions">
+                <thead>
+                    <tr>
+                        <th>Ticket ID</th>
+                        <th>Subject</th>
+                        <th>Status</th>
+                        <th>Created Date</th>
+                        <th>Description</th>
+                        <th>Employee Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="y in ticketsList">
+                        <td>
+                            <u><a href="/dashboard/tickets/ticket-detail/{{y.ticketID}}">{{y.ticketID}}</a></u>
+                        </td>
+                        <td ng-init="limit = 9; moreShown = false">
+                            {{y.title| limitTo: limit}}<a ng-show="y.title.length > limit" href ng-click="limit = y.title.length; moreShown = true">... </a>                        
+                        </td>
+                        <td>{{y.status}}</td>
+                        <td>{{y.reportedDate| date:'MM/dd/yyyy'}}</td>
+                        <td>
+                            <a  href="#" tooltip-placement="right" tooltip="{{y.description}}" class="red-tooltip">{{y.description|limitTo:20}}</a>
+                        </td>
+                        <td>{{y.empName}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

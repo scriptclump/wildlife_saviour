@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <link href="http://www.scriptclump.com/wp-content/uploads/2016/08/fevicon.png" type="image/x-icon" rel="shortcut icon">
+        <title>Wildlife Saviour</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <% include utilities/css.ejs %>
+    </head>
+    <body class="flat-green" ng-app="helpDesk">
+        <div class="app-container">
+            <div class="row content-container">
+                <div id="loader" style="display : none">
+                    <div class="spinner">
+                        <div class="bounce1"></div>
+                        <div class="bounce2"></div>
+                        <div class="bounce3"></div>
+                    </div>
+                </div>
+                <div ui-view></div>
+            </div>
+            <footer class="app-footer">
+                <div class="wrapper">
+					&copy; 2016 ScriptClump, All rights reserved.
+                </div>
+            </footer>
+        </div>
+        <% include utilities/scripts.ejs %>
+    </body>
+</html>

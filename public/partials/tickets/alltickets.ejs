@@ -1,0 +1,113 @@
+
+<div class="container-fluid" ng-controller="ticketCtrl" ng-init="loadTicketsFrom();">
+    <div class="side-body padding-top">
+        <div class="row">
+        </div>
+        <div>
+            <div class="panel fresh-color panel-success">
+                <!-- Default panel contents -->
+                <div class="panel-heading">{{title}}</div>
+                <div class="table-responsive">
+                    <!-- Table -->
+	                <div class="row" style="padding: 15px;background-color: #f5f5f5; margin: 0; border-bottom: 1px solid #d3d3d3;">
+                        <div class="col-md-12" style="margin: 0 !important;text-align: center">
+                            <label for="searchbystatus" class="col-sm-2 control-label" style="padding: 0;line-height: 26px;">Search By Status: </label>
+                            <div class="col-sm-4">
+		                        <select ng-model="data.status" ng-change="loadTicketsFrom(data.status)" class="form-control" selected style="height: 30px;">
+		                          <option value="New">New</option>
+		                          <option value="Open" ng-selected="{{data.status == data.status}}">Open</option>
+		                          <option value="Pending for Approval">Pending For Approval</option>
+		                          <option value="Working with Vendor">Working With Vendor</option>
+		                          <option value="Work in Progress">Work In Progress</option>
+		                          <option value="Close">Close</option>
+		                          <option value="Re-Open">Re-Open</option>
+		                        </select>
+	                        </div>
+                        </div>
+	                </div>
+                    <table class="table" datatable="ng" width="100%" dt-options="dtOptions" >
+                        <thead>
+                            <tr style="color:#262525">
+                                <th>Ticket ID</th>
+                                <th>Subject</th>
+                                <th>Username</th>
+                                <th>Created Date</th>
+                                <th>Assigned To</th>
+                                <th>Closed Date</th>
+                                <th>Hrs Spent</th>
+                                <th>View | Priority | Type</th>
+                            </tr>
+                        </thead>
+                        <tbody >
+                            <tr ng-repeat="y in ticketsList |orderBy: '-ticketID'">
+                                <th>
+                                    <u ng-if="can('64159294') || can('14764455')">
+                                        <a href="/dashboard/tickets/ticket-detail/{{y.ticketID}}">{{y.ticketID}}</a>
+                                    </u>
+                                    <span ng-if="!can('64159294') && !can('14764455')">{{y.ticketID}}</span>
+                                </th>
+                                <!-- <th ng-if="!can('64159294') || !can('14764455')">{{y.ticketID}}</th> -->
+                                <th ng-init="limit = 9; moreShown = false">
+                                    {{y.title| limitTo: limit}}<a ng-show="y.title.length > limit" href ng-click="limit = y.title.length; moreShown = true">... </a>                        
+                                </th>
+                                <th>{{y.empName}}</th>
+                                <!-- <td>{{y.reportedDate| date:'MM/dd/yyyy'}}</td> -->
+                                <td align="center">
+                                    <span ng-if=" y.reportedDate != undefined" >{{y.reportedDate| date:'MM/dd/yyyy'}}<br></span>
+                                    <span ng-if=" y.reportedDate === undefined" >-<br></span>
+                                </td> 
+                              <!--   <td>{{y.assign_to.fName}}&nbsp;{{y.assign_to.lName}}</td> -->
+                                <td align="center">
+                                    <span ng-if=" y.assign_to.fName != undefined">{{y.assign_to.fName}}&nbsp;{{y.assign_to.lName}}<br></span>
+                                    <span ng-if=" y.assign_to.fName === undefined" >-<br></span>
+                                </td>
+                               <!--  <td>{{y.closedDate| date:'MM/dd/yyyy'}}</td> -->
+                                <td align="center">
+                                    <span ng-if=" y.closedDate != undefined" >{{y.closedDate| date:'MM/dd/yyyy'}}<br></span>
+                                    <span ng-if=" y.closedDate === null" >-<br></span>
+                                </td> 
+                                <td>{{y.spent_duration.hrs}} Hrs {{y.spent_duration.min}} Mins</td>
+
+                               <td >
+                                    <!-- <button class="btn btn-default" ng-click="open(y.description)">View</button> -->
+                                    <div style="margin-left:10%; text-transform: capitalize;"><i class="fa fa-eye" aria-hidden="true" ng-click="open(y.description)" title="Click here to view" style="font-size:18px;"></i>  |  {{y.priority}}  | <span ng-if=" y.issue_type_cat_1 != undefined" >{{y.issue_type_cat_1}}<br></span>
+                                    <span ng-if=" y.issue_type_cat_1 === null" >-<br></span> </div>
+
+
+
+                               <!--   <div style="margin-left:10%; text-transform: capitalize;"> <button class="btn btn-default" ng-click="open(y.description)" style=" border-color:white; background-color:white; font-size:16px; padding:1.5px; margin-top:-1px">View</button>|  {{y.priority}}  | <span ng-if=" y.issue_type_cat_1 != undefined" >{{y.issue_type_cat_1}}<br></span>
+                                    <span ng-if=" y.issue_type_cat_1 === null" >-<br></span> </div>
+
+ -->
+
+
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>           
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/ng-template" id="modal.html">
+        <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+        <div class="title ng-binding">
+        <h3>Description</h3>
+        </div>
+        </div>
+        </div>
+        <div class="modal-body" id="modal-body">
+        <div  ng-bind-html="descrip | renderHtml"> </div> 
+        </div>
+        <div class="modal-footer">
+        <button class="btn btn-default" ng-click="close()">Close</button>
+        </div>
+        </div>
+    </script>
+</div>
+
+
+

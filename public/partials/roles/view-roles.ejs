@@ -1,0 +1,48 @@
+<div class="container-fluid" ng-controller="rolesCtrl" ng-init="loadRoles();">
+    <div class="side-body padding-top">
+        <div class="row">
+            <div class="card animated slideInDown">
+                <div class="card-header">
+                    <div class="card-title">
+                        <div class="title"><i class="fa fa-user"></i>&nbsp;&nbsp;View Roles</div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <table class="table table-responsive view_roles">
+                <thead>
+                    <tr align="right">
+                        <th align="right" colspan="5">
+                            <form class="form-inline">
+                                <div class="view_roles_search form-group pull-right">
+                                    <label>Search:</label>
+                                    <input type="text" ng-model="search" class="form-control" placeholder="Search">
+                                </div>
+                            </form>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>Role Name</th>
+                        <th>Role Description</th>
+                        <th>Privileges</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="role in data  | start: (currentPage - 1) * pageSize | limitTo: pageSize | filter:search">
+                        <td>{{role.name}}</td>
+                        <td>{{role.desc}}</td>
+                        <td>
+                            <span ng-repeat="privilege in role.privileges">
+                                {{privilege}}{{$last ? '' : ($index==role.privileges.length-1) ? ' ' : ', '}}
+                            </span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <p align="right">
+                <pagination total-items="data.length" items-per-page="pageSize" ng-model="currentPage" 
+                        class="pagination-sm"></pagination>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

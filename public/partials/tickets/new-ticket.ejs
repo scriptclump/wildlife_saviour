@@ -1,0 +1,57 @@
+<div class="container-fluid" ng-controller="ticketCtrl">
+    <div class="side-body">
+        <div class = "row">
+            <div class="alert alert-success col-md-12" id="success-alert" style="display: none">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <center>Ticket has been registered successfully</center>
+            </div>
+            <div class="alert alert-danger col-md-12" id="danger-alert" style="display: none">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <center> <strong> Oops! </strong> Something went wrong. <br> Reason: {{errorMsg}} </center>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <div class="title">Create New Ticket</div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <form class="form-horizontal" ng-submit="newTicketSubmit(data)" name="NewticketForm" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <label for="emp_ID" class="col-sm-2 control-label">Subject *</label>
+                                <div class="col-sm-4">
+                                    <input type="text"  name="empID" ng-model="data.subject"  class="form-control" id="ticket_subject" placeholder="Subject" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="emp_fname" class="col-sm-2 control-label">Issue/Request Description *</label>
+                                <div class="col-sm-8">
+                                    <textarea rows="10" cols="30" ng-model="data.description" required class="form-control" id="ticket_desc" placeholder="Issue/Request Description"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="emp_fname" class="col-sm-2 control-label">Attachments </label>
+                                <div class="col-sm-8">
+                                    <input type="file" ngf-select ng-model="data.files" ngf-multiple="true" ngf-pattern="'image/*,application/*,text/plain'" 
+                                    	accept="image/*,application/*,text/plain" ngf-max-size="20MB" />
+                                    <i ng-show="data.NewticketForm.files.$error.required">*required</i><br>
+                                    <i ng-show="data.NewticketForm.files.$error.maxSize">File too large 
+                                        {{data.files.size / 1000000|number:1}}MB: max 20M</i>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-4 col-sm-6">
+                                    <button type="submit" value="submit" class="btn btn-md btn-info">Submit</button>
+                                    <a ui-sref="dashboard.mytickets" class="btn btn-md btn-info">Cancel</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

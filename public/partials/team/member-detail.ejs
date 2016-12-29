@@ -1,0 +1,89 @@
+<!--<h1>Load member detail page</h1>-->
+<div ng-controller="teamCtrl" ng-init="getMemberDetail();" >
+    <div class="container-fluid" ng-show="isVisible">
+        <div class="side-body" >
+            <div class="row">
+                <div class="alert alert-success col-md-12" id="success-alert" style="display: none">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <center>Profile has been updated successfully.</center>
+                </div>
+                <div class="alert alert-danger col-md-12" id="danger-alert" style="display: none">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <center> <strong> Oops! </strong> Something went wrong.<br> Reason: {{errorMsg}}</center>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="card" >
+                        <div class="card-header">
+                            <div class="card-title">
+                                <div class="title">Member Details</div>
+                            </div>
+                        </div>
+                        <!--                        {{data}}-->
+                        <div class="card-body">
+                            <form class="form-horizontal" ng-submit="updateProfiledetails(data);">
+
+                            	<!-- updating all details by _id -->
+                             	<input type="hidden" id="emp_RID" ng-model="data._id" value="{{data._id}}"  class="form-control">
+
+                                <div class="form-group">
+                                    <label for="emp_fname" class="col-sm-2 control-label">First Name *</label>
+                                    <div class="col-sm-4">
+                                        <input type="text" id="emp_fname" ng-model="data.fName" value="{{data.fName}}" class="form-control" required>
+                                    </div>
+                                    <label for="emp_lname" class="col-sm-2 control-label">Last Name *</label>
+                                    <div class="col-sm-4">
+                                        <input type="text" id="emp_lname" ng-model="data.lName" value="{{data.lName}}" class="form-control" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="emp_email" class="col-sm-2 control-label">Email ID *</label>
+                                    <div class="col-sm-4">
+                                        <input type="email" id="emp_email" ng-model="data.email" value="{{data.email}}" class="form-control" ng-disabled="true" />
+                                    </div>
+                                    <label for="emp_location" class="col-sm-2 control-label">Location *</label>
+                                    <div class="col-sm-4">
+	                                    <select id="member_location" required ng-model="data.location" class="form-control" ng-options="c for c in locations">
+	                                        <option value="">Select Location</option>
+	                                        <option ng-selected="{{c == data.location}}" ng-repeat="item in items" value="{{item}}"> {{data.location}}
+	                                        </option>
+	                                    </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="emp_ID" class="col-sm-2 control-label">Employee ID</label>
+                                    <div class="col-sm-4">
+                                        <input type="text" id="emp_ID" ng-model="data.empID" value="{{data.empID}}"  class="form-control">
+                                    </div>
+                                    <label for="emp_dsign" class="col-sm-2 control-label">Designation</label>
+                                    <div class="col-sm-4">
+                                        <input type="text" id="emp_dsign" ng-model="data.designation" value="{{data.designation}}" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="emp_mno" class="col-sm-2 control-label">Mobile Number</label>
+                                    <div class="col-sm-4">
+                                        <input type="text" id="emp_mno" ng-model="data.mNum"  value="{{data.mNum}}"  class="form-control" />
+                                    </div>
+                                    <label for="emp_ano" class="col-sm-2 control-label">Alternative Number</label>
+                                    <div class="col-sm-4">
+                                        <input type="text" id="emp_ano" ng-model="data.aNum" value="{{data.aNum}}"  class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-offset-4 col-sm-6">
+                                        <button type="submit" class="btn btn-md btn-success">Update</button>
+                                         <a href="/dashboard/team/member-profile/{{data._id}}" class="btn btn-md btn-info">Cancel</a>
+                                    </div>
+                                </div>
+                            </form>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

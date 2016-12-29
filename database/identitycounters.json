@@ -1,0 +1,7 @@
+{ 
+    "_id" : ObjectId("5858bf045bfacc1e341ae776"), 
+    "model" : "ticket", 
+    "field" : "ticketID", 
+    "count" : NumberInt(9999), 
+    "__v" : NumberInt(0)
+}

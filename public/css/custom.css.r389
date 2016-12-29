@@ -1,0 +1,236 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+.login_navbar{
+	padding-left: 0px !important;
+}
+.login_navbar .container-fluid{
+	padding: 0px !important;
+}
+.login_navbar .navbar-header{
+	position: static;
+	float: left;
+	margin-left: 0px !important;
+	width: 100%;
+}
+.login_navbar .navbar-header .applogo{
+	float: left;
+	margin-right: 20px !important;
+}
+.app-container .app-footer{
+	left: 0px !important;
+}
+.navbar-header .applogo{
+	display: block;
+	float: left;
+	background-color: #fff;
+	left: 0px;
+	top: 0;
+	padding: 5px 10px;
+	width: 210px;
+	height: 60px;
+}
+.navbar-header .applogo .logo{
+	display: block;
+	width:190px;
+	height:50px;
+}
+.navbar-header .applogo .logo img{
+	display: block;
+	max-width:100%;
+	max-height:100%;
+}
+.login-form{
+    margin-top:100px;
+}
+.app-container .content-container .side-body.padding-top {
+    padding-top: 84px!important;
+}
+.app-container .side-body {
+    margin-left: 75px;
+    margin-right: 15px;
+    -webkit-transition: all 0.25s;
+    transition: all 0.25s;
+    padding-top: 84px!important;
+}
+.red-tooltip.right .tooltip-arrow {
+  top:50%;
+    left:0;
+    margin-top:-5px;
+    border-top:5px solid transparent;
+    border-bottom:5px solid transparent;
+    border-right:5px solid #CCC;
+}
+.red-tooltip-inner {
+  color: #000;
+  background: #fff;
+  border: solid 1px #fff;
+  overflow: scroll;
+}
+#activity_list {
+    margin: 0 -21px;
+}
+#comment_title {
+    font-weight: 700;
+    margin: 0px 0px 3px -16px;
+}
+#attachment{
+	 font-weight: 700;
+    margin: 0px 0px 3px -16px;
+	
+}
+#description_title{
+	 font-weight: 700;
+    margin: 0px 0px 3px -33px;
+	
+}
+#description {
+    margin: 0 -32px 0 -36px;
+}
+
+/******* Switch Button added by Sai *****/
+
+.active, .inactive {cursor:pointer;}
+.active, .inactive  {cursor:pointer;}
+i.active { color: #5cb85c}
+i.inactive {color: #d9534f}
+div.dataTables_wrapper div.dataTables_length select {
+    width: 46px;
+    display: inline-block;
+    border: 0.1px solid;
+    color: #606163;
+}
+.ticketDetail_header{
+	float:none !important;
+}
+.margin-bottom-10{
+    margin-bottom: 10px;
+}
+.message-list li{
+    margin-bottom: 10px;
+}
+div.dataTables_wrapper div.dataTables_paginate {
+    margin: 0 10px 0 0;
+}
+/* div.dataTables_wrapper div.dataTables_paginate a{
+    margin: 0 5px 0 0;
+}
+div.dataTables_wrapper div.dataTables_paginate a:hover{
+    margin: 0 5px 0 0;
+    padding: 0 !important;
+} */
+.dataTables_wrapper .dataTables_paginate .paginate_button, .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+    font-family: "Helvetica Neueu",Helvetica,Arial,sans-serif;
+    background-color: #f5f5f5 !important;
+    background-image: -moz-linear-gradient(center top , #f9f9f9, #eaeaea) !important;
+    border-radius: 3px;
+    border-top: 1px solid #fff;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.2) !important;
+    color: #717171 !important;
+    display: inline-block;
+    font-size: 12px;
+    margin: 1px 3px;
+    padding: 5px 10px;
+    text-decoration: none;
+    text-shadow: 0 1px 0 white;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+    background-color: #676767 !important;
+    /* background-image: -moz-linear-gradient(center top , #5f5f5f, #5c5c5c) !important; */
+	background-image: -webkit-linear-gradient(center top, #5f5f5f, #5c5c5c) !important; /* For Safari 5.1 to 6.0 */
+	background-image: -o-linear-gradient(center top, #5f5f5f, #5c5c5c) !important; /* For Opera 11.1 to 12.0 */
+	background-image: -moz-linear-gradient(center top, #5f5f5f, #5c5c5c) !important; /* For Firefox 3.6 to 15 */
+	background-image: linear-gradient(to center top, #5f5f5f, #5c5c5c) !important; /* Standard syntax */
+    border-color: #505050 !important;
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.75) inset !important;
+    color: #f2f2f2 !important;
+    text-shadow: 0 1px 0 black;
+}
+.attachments_section .panel-title a{
+	display: block;
+	font-size: 14px;
+}
+.privileges_list > div{
+	padding: 5px 0;
+}
+.flat-green .navbar.navbar-inverse > .container-fluid {
+    border-bottom: 4px solid #738dab;
+}
+.attachments .fa {
+    font-size: 30px;
+}
+.attachments a {
+    display: inline-block;
+    margin: 0 5px;
+}
+.view_roles table{
+	border-bottom: 1px solid #111 !important;
+}
+.view_roles_search label {
+    font-size: 13px;
+    font-weight: normal;
+}
+.view_roles_search input {
+    border: 1px solid #e4e4e4;
+    border-radius: 3px;
+    font-size: 13px;
+    font-weight: normal;
+    height: 22px;
+    padding: 2px;
+}
+.view_roles p{
+	margin: 5px 0 0;
+}
+.view_roles p ul {
+    margin-right: 10px;
+}
+div.dataTables_wrapper div.dataTables_paginate {
+    margin: 0 10px 0 0;
+}
+/* div.dataTables_wrapper div.dataTables_paginate a{
+    margin: 0 5px 0 0;
+}
+div.dataTables_wrapper div.dataTables_paginate a:hover{
+    margin: 0 5px 0 0;
+    padding: 0 !important;
+} */
+.view_roles p ul li a{
+    font-family: "Helvetica Neueu",Helvetica,Arial,sans-serif;
+    background-color: #f5f5f5 !important;
+    background-image: -moz-linear-gradient(center top , #f9f9f9, #eaeaea) !important;
+    border-radius: 3px !important;
+    border: none;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.2) !important;
+    color: #717171 !important;
+    display: inline-block;
+    font-size: 12px;
+    margin: 1px 3px;
+    padding: 5px 10px;
+    text-decoration: none;
+    text-shadow: 0 1px 0 white;
+}
+.view_roles p ul li.active a{
+    background-color: #676767 !important;
+    background-image: -moz-linear-gradient(center top , #5f5f5f, #5c5c5c) !important;
+    border-color: none;
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.75) inset !important;
+    color: #f2f2f2 !important;
+    text-shadow: 0 1px 0 black;
+}
+.ticket_det_type {
+    text-transform: capitalize;
+}
+.app-container .app-footer{
+	left: 50px !important;
+}
+.status_ddown{
+	text-transform: capitalize;
+}
+#import_members .dataTables_wrapper .dataTables_filter{
+	display: none !important;
+}
+#import_members .dataTables_wrapper .dataTables_length{
+	display: none !important;
+}
