@@ -1,7 +1,3 @@
-/**
- * Created by Mallesh on 4/10/2016.
- */
-
 var mongoose = require('mongoose');
 var ObjectId= mongoose.Types.ObjectId;
 var autoIncrement = require('mongoose-auto-increment');

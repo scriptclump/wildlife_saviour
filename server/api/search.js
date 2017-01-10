@@ -1,7 +1,3 @@
-/**
- * Created by CGI on 07/12/2016.
- */
-
 var express = require('express');
 var router = express.Router();
 

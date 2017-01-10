@@ -1,7 +1,3 @@
-/**
- * Created by CGI on 07/12/2016.
- */
-
 var Member = require('../models/members');
 var Members = require('mongoose').model('Member');
 var generatePassword = require("password-generator");

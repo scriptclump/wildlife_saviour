@@ -1,7 +1,3 @@
-/**
- * Created by Pkp on 5/14/2016.
- */
-
 var Incident = require('../models/Incidents');
 var Incidents = require('mongoose').model('Incident');
 
